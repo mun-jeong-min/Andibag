@@ -1,5 +1,6 @@
 package com.example.andibag.domain.user.domain;
 
+import com.example.andibag.global.enums.Authority;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -34,11 +35,16 @@ public class User {
     @Column(unique = true)
     private String phoneNumber;
 
+    @NotNull
+    @Column
+    private Authority authority;
+
     @Builder
-    public User(String accountId, String password, String nickname, String phoneNumber) {
+    public User(String accountId, String password, String nickname, String phoneNumber, Authority authority) {
         this.accountId = accountId;
         this.nickname = nickname;
         this.password = password;
         this.phoneNumber = phoneNumber;
+        this.authority = authority;
     }
 }

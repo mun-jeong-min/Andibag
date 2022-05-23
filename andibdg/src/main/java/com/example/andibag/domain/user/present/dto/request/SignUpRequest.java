@@ -1,5 +1,6 @@
 package com.example.andibag.domain.user.present.dto.request;
 
+import com.example.andibag.global.enums.Authority;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
