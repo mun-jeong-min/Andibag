@@ -1,6 +1,8 @@
 package com.example.andibag.global.config;
 
 import com.example.andibag.global.error.ExceptionHandler;
+import com.example.andibag.global.security.jwt.JwtTokenFilter;
+import com.example.andibag.global.security.jwt.JwtTokenProvider;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
@@ -11,9 +13,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class FilterConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
+    private final JwtTokenProvider jwtTokenProvider;
+
     @Override
     public void configure(HttpSecurity builder) {
         ExceptionHandler exceptionHandler = new ExceptionHandler();
-        builder.addFilterBefore(exceptionHandler, UsernamePasswordAuthenticationFilter.class);
+        JwtTokenFilter jwtTokenFilter = new JwtTokenFilter(jwtTokenProvider);
+        builder.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        builder.addFilterBefore(exceptionHandler, JwtTokenFilter.class);
     }
 }
