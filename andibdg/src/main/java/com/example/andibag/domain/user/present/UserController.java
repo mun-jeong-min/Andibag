@@ -17,10 +17,10 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
     private final UserSignUpService userSignUpService;
     private final UserSignInService userSignInService;
-
-
+    
     @PostMapping("/signup")
     public void signup(@RequestBody @Valid SignUpRequest request) {
         userSignUpService.signup(request);
@@ -30,5 +30,4 @@ public class UserController {
     public TokenResponse signIn(@RequestBody @Valid SignInRequest request) {
         return userSignInService.signIn(request);
     }
-
 }
