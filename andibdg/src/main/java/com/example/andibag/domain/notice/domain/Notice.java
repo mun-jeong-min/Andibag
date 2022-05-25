@@ -1,6 +1,7 @@
 package com.example.andibag.domain.notice.domain;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,4 +25,10 @@ public class Notice {
     @NotNull
     @Column
     private String content;
+
+    @Builder
+    public Notice(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }
