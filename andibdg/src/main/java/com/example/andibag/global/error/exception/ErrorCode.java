@@ -11,6 +11,7 @@ public enum ErrorCode {
 
     USER_NOT_FOUND(404, "USER-404-1", "User Not Found"),
     REFRESH_NOT_FOUND(404, "jwt-404-1", "RefreshToken Not Found"),
+    NOTICE_NOT_FOUND(404, "notice-404-1", "Notice Not Found"),
 
     USER_EXISTS(409, "USER-409-1", "User Exists");
 
