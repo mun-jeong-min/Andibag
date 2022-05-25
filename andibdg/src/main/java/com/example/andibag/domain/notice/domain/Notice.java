@@ -31,4 +31,9 @@ public class Notice {
         this.title = title;
         this.content = content;
     }
+
+    public void updateNotice(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }
