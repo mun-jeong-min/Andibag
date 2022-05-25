@@ -10,6 +10,7 @@ public enum ErrorCode {
     PASSWORD_MISMATCH(401,"user-401-1","Password Mismatch"),
 
     USER_NOT_FOUND(404, "USER-404-1", "User Not Found"),
+    REFRESH_NOT_FOUND(404, "jwt-404-1", "RefreshToken Not Found"),
 
     USER_EXISTS(409, "USER-409-1", "User Exists");
 
