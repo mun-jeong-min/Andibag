@@ -5,6 +5,7 @@ import com.example.andibag.domain.notice.present.dto.response.NoticeOneReadRespo
 import com.example.andibag.domain.notice.service.NoticeCreateService;
 import com.example.andibag.domain.notice.service.NoticeOneReadService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -22,6 +23,7 @@ public class NoticeController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public void noticeCreate(@RequestBody @Valid NoticeCreateRequest request) {
         noticeCreateService.noticeCreate(request);
     }

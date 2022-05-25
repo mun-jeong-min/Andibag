@@ -6,10 +6,8 @@ import com.example.andibag.domain.user.present.dto.response.TokenResponse;
 import com.example.andibag.domain.user.service.UserSignInService;
 import com.example.andibag.domain.user.service.UserSignUpService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -22,6 +20,7 @@ public class UserController {
     private final UserSignInService userSignInService;
     
     @PostMapping("/signup")
+    @ResponseStatus(HttpStatus.CREATED)
     public void signup(@RequestBody @Valid SignUpRequest request) {
         userSignUpService.signup(request);
     }
