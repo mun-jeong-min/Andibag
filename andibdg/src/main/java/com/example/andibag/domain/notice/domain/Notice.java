@@ -1,5 +1,6 @@
 package com.example.andibag.domain.notice.domain;
 
+import com.example.andibag.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import javax.validation.constraints.Size;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Notice {
+public class Notice extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,6 +26,10 @@ public class Notice {
     @NotNull
     @Column
     private String content;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Notice_id")
+    private Notice notice;
 
     @Builder
     public Notice(String title, String content) {
