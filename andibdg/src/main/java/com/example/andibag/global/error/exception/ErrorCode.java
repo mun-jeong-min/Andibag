@@ -7,7 +7,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ErrorCode {
     INVALID_JWT(401, "JWT-401-1", "Invalid Jwt"),
-    PASSWORD_MISMATCH(401,"user-401-1","Password Mismatch"),
+    PASSWORD_MISMATCH(401,"auth-401-1","Password Mismatch"),
+    EXPIRED_JWT(401, "jwt-401-2", "Expired Jwt"),
+
 
     USER_NOT_FOUND(404, "USER-404-1", "User Not Found"),
     REFRESH_NOT_FOUND(404, "jwt-404-1", "RefreshToken Not Found"),
