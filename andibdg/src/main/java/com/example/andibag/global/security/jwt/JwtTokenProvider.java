@@ -5,6 +5,7 @@ import com.example.andibag.domain.auth.domain.repository.RefreshTokenRepository;
 import com.example.andibag.global.exception.InvalidJwtException;
 import com.example.andibag.global.security.auth.AuthDetailsService;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
@@ -47,7 +48,7 @@ public class JwtTokenProvider {
                 .setSubject(id)
                 .claim("type", type)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + exp))
+                .setExpiration(new Date(System.currentTimeMillis() + exp * 1000))
                 .compact();
     }
 
@@ -67,7 +68,10 @@ public class JwtTokenProvider {
         try {
             return Jwts.parser().setSigningKey(jwtProperties.getSecretKey())
                     .parseClaimsJws(token).getBody();
-        } catch (Exception e) {
+        } catch (ExpiredJwtException e) {
+            throw com.example.andibag.global.exception.ExpiredJwtException.EXCEPTION;
+        }
+        catch (Exception e) {
             throw InvalidJwtException.EXCEPTION;
         }
 
