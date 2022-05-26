@@ -2,11 +2,9 @@ package com.example.andibag.domain.notice.present;
 
 import com.example.andibag.domain.notice.present.dto.reqeust.NoticeCreateRequest;
 import com.example.andibag.domain.notice.present.dto.reqeust.NoticeUpdateRequest;
-import com.example.andibag.domain.notice.present.dto.response.NoticeOneReadResponse;
-import com.example.andibag.domain.notice.service.NoticeCreateService;
-import com.example.andibag.domain.notice.service.NoticeDeleteService;
-import com.example.andibag.domain.notice.service.NoticeOneReadService;
-import com.example.andibag.domain.notice.service.NoticeUpdateService;
+import com.example.andibag.domain.notice.present.dto.response.NoticeAllReadResponse;
+import com.example.andibag.domain.notice.present.dto.response.NoticeResponse;
+import com.example.andibag.domain.notice.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +19,10 @@ public class NoticeController {
     private final NoticeCreateService noticeCreateService;
     private final NoticeUpdateService noticeUpdateService;
     private final NoticeDeleteService noticeDeleteService;
+    private final NoticeAllReadService noticeAllReadService;
 
     @GetMapping("/{id}")
-    public NoticeOneReadResponse noticeOneRead(@PathVariable("id") Long id) {
+    public NoticeResponse noticeOneRead(@PathVariable("id") Long id) {
         return noticeOneReadService.noticeOneRead(id);
     }
 
@@ -41,5 +40,10 @@ public class NoticeController {
     @DeleteMapping("/{id}")
     public void noticeDelete(@PathVariable("id") Long id) {
         noticeDeleteService.noticeDelete(id);
+    }
+
+    @GetMapping
+    public NoticeAllReadResponse noticeList() {
+        return noticeAllReadService.noticeAllRead();
     }
 }
