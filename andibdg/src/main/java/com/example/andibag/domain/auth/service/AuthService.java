@@ -25,7 +25,7 @@ public class AuthService {
                 .orElseThrow(() -> RefreshTokenNotFoundException.EXCEPTION);
 
         String newRefreshToken = jwtTokenProvider.generateRefreshToken(refreshTokenOne.getAccountId());
-        refreshTokenOne.updateToken(newRefreshToken, jwtProperties.getRefreshExp());
+        refreshTokenOne.updateToken(newRefreshToken, jwtProperties.getRefreshExp() * 1000);
 
         String accessToken = jwtTokenProvider.generateAccessToken(refreshTokenOne.getAccountId());
 

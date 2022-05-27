@@ -1,5 +1,6 @@
 package com.example.andibag.domain.notice.domain;
 
+import com.example.andibag.domain.user.domain.User;
 import com.example.andibag.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -28,8 +29,8 @@ public class Notice extends BaseTimeEntity {
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Notice_id")
-    private Notice notice;
+    @JoinColumn(name = "User_Id")
+    private User user;
 
     @Builder
     public Notice(String title, String content) {
