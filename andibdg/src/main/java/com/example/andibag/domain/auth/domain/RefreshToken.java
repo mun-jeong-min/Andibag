@@ -21,8 +21,7 @@ public class RefreshToken {
     @TimeToLive
     private Long timeToLive;
 
-    public void updateToken(String token, Long timeToLive) {
+    public void updateToken(String token) {
         this.token = token;
-        this.timeToLive = timeToLive;
     }
 }
