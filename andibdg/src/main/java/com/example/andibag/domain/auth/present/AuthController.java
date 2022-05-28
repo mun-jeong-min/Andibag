@@ -12,7 +12,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping
-    public UserRefreshTokenResponse execute(@RequestHeader("Refresh-Token") String refreshToken) {
-        return authService.execute(refreshToken);
+    public UserRefreshTokenResponse reissue(@RequestHeader("Refresh-Token") String refreshToken) {
+        return authService.reissue(refreshToken);
     }
 }

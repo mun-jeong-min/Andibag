@@ -19,7 +19,7 @@ public class AuthService {
     private final JwtTokenProvider jwtTokenProvider;
 
     @Transactional
-    public UserRefreshTokenResponse execute(String refreshToken) {
+    public UserRefreshTokenResponse reissue(String refreshToken) {
         if (!jwtTokenProvider.getTokenBody(refreshToken).get("typ").equals("refresh"))
             throw InvalidJwtException.EXCEPTION;
 
