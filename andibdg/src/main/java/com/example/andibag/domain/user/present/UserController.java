@@ -3,6 +3,10 @@ package com.example.andibag.domain.user.present;
 import com.example.andibag.domain.user.present.dto.request.SignInRequest;
 import com.example.andibag.domain.user.present.dto.request.SignUpRequest;
 import com.example.andibag.domain.user.present.dto.response.TokenResponse;
+import com.example.andibag.domain.user.present.dto.response.UserListResponse;
+import com.example.andibag.domain.user.present.dto.response.UserProfileResponse;
+import com.example.andibag.domain.user.service.ProfileListService;
+import com.example.andibag.domain.user.service.UserProfileService;
 import com.example.andibag.domain.user.service.UserSignInService;
 import com.example.andibag.domain.user.service.UserSignUpService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +22,8 @@ public class UserController {
 
     private final UserSignUpService userSignUpService;
     private final UserSignInService userSignInService;
+    private final ProfileListService profileListService;
+    private final UserProfileService userProfileService;
     
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
@@ -28,5 +34,15 @@ public class UserController {
     @PostMapping("/login")
     public TokenResponse signIn(@RequestBody @Valid SignInRequest request) {
         return userSignInService.signIn(request);
+    }
+
+    @GetMapping
+    public UserListResponse profileList() {
+        return profileListService.userList();
+    }
+
+    @GetMapping("/{id}")
+    public UserProfileResponse userProfile(@PathVariable("id") Long id) {
+        return userProfileService.userProfile(id);
     }
 }
