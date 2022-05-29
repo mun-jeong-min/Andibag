@@ -14,6 +14,6 @@ public class NoticeCreateRequest {
     @Size(min = 1, max = 20, message = "title은 20글자이상을 허용하지 않습니다.")
     private String title;
 
-    @NotBlank(message = "content는 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
+    @NotBlank(message = "content는 Null을 허용하지 않습니다")
     private String content;
 }

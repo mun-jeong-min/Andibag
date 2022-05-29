@@ -18,7 +18,7 @@ public class NoticeAllReadService {
     @Transactional(readOnly = true)
     public NoticeAllReadResponse noticeAllRead() {
         List<NoticeResponse> noticeList = noticeRepository.findAll()
-                .stream().map(notice -> new NoticeResponse(notice.getTitle(), notice.getContent(), notice.getCreateTime()))
+                .stream().map(notice -> new NoticeResponse(notice.getTitle(), notice.getContent(), notice.getCreateTime(), notice.getUser().getNickname()))
                 .collect(Collectors.toList());
 
         return new NoticeAllReadResponse(noticeList);

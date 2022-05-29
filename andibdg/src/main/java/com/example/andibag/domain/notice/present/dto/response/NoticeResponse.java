@@ -13,4 +13,5 @@ public class NoticeResponse {
     private final String title;
     private final String content;
     private final LocalDateTime createAt;
+    private final String nickname;
 }

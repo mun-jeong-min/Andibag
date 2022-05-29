@@ -20,6 +20,7 @@ public class NoticeOneReadService {
                 .title(notice.getTitle())
                 .content(notice.getContent())
                 .createAt(notice.getCreateTime())
+                .nickname(notice.getUser().getNickname())
                 .build();
     }
 }
