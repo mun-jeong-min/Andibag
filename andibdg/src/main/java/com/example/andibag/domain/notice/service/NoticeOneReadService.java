@@ -20,6 +20,7 @@ public class NoticeOneReadService {
                 .orElseThrow(() -> NoticeNotFoundException.EXCEPTION);
 
         return NoticeResponse.builder()
+                .id(notice.getId())
                 .title(notice.getTitle())
                 .content(notice.getContent())
                 .createAt(notice.getCreateTime())

@@ -30,13 +30,14 @@ public class Notice extends BaseTimeEntity {
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "User_Id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Builder
-    public Notice(String title, String content) {
+    public Notice(String title, String content, User user) {
         this.title = title;
         this.content = content;
+        this.user = user;
     }
 
     public void updateNotice(String title, String content) {
