@@ -1,5 +1,6 @@
 package com.example.andibag.domain.notice.domain;
 
+import com.example.andibag.domain.comment.domain.Comment;
 import com.example.andibag.domain.user.domain.User;
 import com.example.andibag.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;

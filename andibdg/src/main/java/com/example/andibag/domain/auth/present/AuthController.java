@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
     private final AuthService authService;
 
-    @PostMapping
+    @PutMapping
     public UserRefreshTokenResponse reissue(@RequestHeader("Refresh-Token") String refreshToken) {
         return authService.reissue(refreshToken);
     }

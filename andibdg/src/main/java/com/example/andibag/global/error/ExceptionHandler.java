@@ -19,6 +19,7 @@ public class ExceptionHandler extends OncePerRequestFilter {
         try {
             filterChain.doFilter(request,response);
         } catch (ProjectException e) {
+            e.printStackTrace();
             ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage());
 
             response.setStatus(e.getErrorCode().getStatus());
