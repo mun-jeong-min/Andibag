@@ -1,7 +1,6 @@
 package com.example.andibag.global.error;
 
 import com.example.andibag.global.error.exception.ProjectException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -17,7 +16,7 @@ public class ExceptionHandler extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
-            filterChain.doFilter(request,response);
+            filterChain.doFilter(request, response);
         } catch (ProjectException e) {
             e.printStackTrace();
             ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage());

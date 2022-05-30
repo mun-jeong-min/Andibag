@@ -14,6 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Comment extends BaseTimeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,16 +23,18 @@ public class Comment extends BaseTimeEntity {
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "User_Id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Notice_Id")
+    @JoinColumn(name = "notice_id", nullable = false)
     private Notice notice;
 
     @Builder
-    public Comment(String content) {
+    public Comment(String content, User user, Notice notice) {
         this.content = content;
+        this.user = user;
+        this.notice = notice;
     }
 
     public void updateComment(String content) {
