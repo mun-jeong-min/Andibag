@@ -8,6 +8,8 @@ import lombok.Getter;
 public enum ErrorCode {
     INVALID_JWT(401, "JWT-401-1", "Invalid Jwt"),
     PASSWORD_MISMATCH(401,"auth-401-1","Password Mismatch"),
+    PHONE_MISMATCH(401, "user-401-1", "PhoneNumber Mismatch"),
+
     EXPIRED_JWT(401, "jwt-401-2", "Expired Jwt"),
 
 
