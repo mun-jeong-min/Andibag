@@ -3,6 +3,7 @@ package com.example.andibag.global.error;
 import com.example.andibag.global.error.exception.ProjectException;
 import com.example.andibag.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -14,17 +15,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@RequiredArgsConstructor
+@Component
 public class ExceptionHandler extends OncePerRequestFilter {
-    private final JwtTokenProvider jwtTokenProvider;
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String bearer = jwtTokenProvider.resolveToken(request);
-        if(bearer != null) {
-            Authentication authentication = jwtTokenProvider.authentication(bearer);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        try {
+            filterChain.doFilter(request, response);
+        } catch (ProjectException e) {
+            ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage());
+
+            response.setStatus(e.getErrorCode().getStatus());
+            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+            response.getWriter().write(errorResponse.convertToJson(errorResponse));
         }
-        filterChain.doFilter(request, response);
     }
 }

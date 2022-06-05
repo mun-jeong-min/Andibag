@@ -18,23 +18,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ProjectException.class)
     public ResponseEntity<ErrorResponse> handleException(ProjectException e) {
         final ErrorCode errorCode = e.getErrorCode();
-        return new ResponseEntity<>(
-                ErrorResponse.builder()
-                        .status(errorCode.getStatus())
-                        .message(errorCode.getMessage())
-                        .build(),
-                HttpStatus.valueOf(errorCode.getStatus())
-        );
+        return new ResponseEntity<>(new ErrorResponse(errorCode.getMessage()), HttpStatus.valueOf(errorCode.getStatus()));
     }
 
-    @ExceptionHandler(BindException.class)
-    public ResponseEntity<?> handleValidException(BindException e) {
-        Map<String, String> errorMap = new HashMap<>();
-
-        for(FieldError error : e.getFieldErrors()) {
-            errorMap.put(error.getField(), error.getDefaultMessage());
-        }
-
-        return new ResponseEntity<>(errorMap, HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidException(MethodArgumentNotValidException e) {
+        return new ResponseEntity<>(
+                new ErrorResponse(e.getBindingResult().getAllErrors().get(0).getDefaultMessage()), HttpStatus.BAD_REQUEST
+        );
     }
 }
