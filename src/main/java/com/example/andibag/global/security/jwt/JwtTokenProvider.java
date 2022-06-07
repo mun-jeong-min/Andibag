@@ -70,8 +70,7 @@ public class JwtTokenProvider {
                     .parseClaimsJws(token).getBody();
         } catch (ExpiredJwtException e) {
             throw com.example.andibag.global.exception.ExpiredJwtException.EXCEPTION;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw InvalidJwtException.EXCEPTION;
         }
 
