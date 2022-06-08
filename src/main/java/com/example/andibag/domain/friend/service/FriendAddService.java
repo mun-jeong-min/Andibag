@@ -32,7 +32,7 @@ public class FriendAddService {
         friendRepository.save(
                 Friend.builder()
                         .user(toUser)
-                        .current_user_id(currentUser.getId())
+                        .user_id(currentUser.getId())
                         .build()
         );
     }

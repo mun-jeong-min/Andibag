@@ -23,10 +23,12 @@ public class User {
     @Column(unique = true)
     private String accountId;
 
+    @NotNull
     @Column
     @Size(max = 60)
     private String password;
 
+    @NotNull
     @Column(unique = true)
     private String nickname;
 

@@ -1,10 +1,8 @@
 package com.example.andibag.domain.friend.domain;
 
 import com.example.andibag.domain.user.domain.User;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.example.andibag.domain.user.facade.UserFacade;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,15 +17,15 @@ public class Friend {
 
     @Column
     @NotNull
-    private Long current_user_id;
+    private Long user_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "to_user_id")
     private User user;
 
     @Builder
-    public Friend(User user, Long current_user_id) {
+    public Friend(User user, Long user_id) {
         this.user = user;
-        this.current_user_id = current_user_id;
+        this.user_id = user_id;
     }
 }
