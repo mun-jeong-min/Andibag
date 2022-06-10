@@ -53,8 +53,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT, "/comment/{id}").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/comment/{id}").authenticated()
 
-                .antMatchers(HttpMethod.POST, "/friend").authenticated()
-                .antMatchers(HttpMethod.GET, "/friend").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/friend/{id}").authenticated()
+                .antMatchers(HttpMethod.PATCH, "/friend/{id}").authenticated()
+                .antMatchers(HttpMethod.POST, "/friend/{id}").authenticated()
+                .antMatchers(HttpMethod.GET, "/friend/fri").authenticated()
+                .antMatchers(HttpMethod.GET, "/friend/wait").authenticated()
+                .antMatchers(HttpMethod.POST, "/friend/wait").authenticated()
 
                 .anyRequest().permitAll()
 
