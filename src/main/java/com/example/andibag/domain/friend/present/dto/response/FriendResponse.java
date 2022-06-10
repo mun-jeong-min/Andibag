@@ -8,6 +8,7 @@ import lombok.Getter;
 @Builder
 @AllArgsConstructor
 public class FriendResponse {
+    private final Long id;
     private final String nickname;
     private final String phoneNumber;
 }

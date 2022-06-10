@@ -1,6 +1,5 @@
 package com.example.andibag.domain.user.present.dto.request;
 
-import com.example.andibag.global.enums.Authority;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +15,7 @@ public class SignUpRequest {
 
     @NotBlank(message = "password는 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
     private String password;
-    
+
     @NotBlank(message = "nickname은 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
     private String nickname;
 
