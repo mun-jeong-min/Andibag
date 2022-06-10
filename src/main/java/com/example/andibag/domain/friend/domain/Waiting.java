@@ -11,22 +11,30 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Friend {
+public class Waiting {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_friend_id")
-    private Waiting userFriend;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "friend_id")
+    private User userFriend;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column
+    private boolean isChecked;
+
     @Builder
-    public Friend(User user, Waiting userFriend) {
+    public Waiting(User user, User userFriend, boolean isChecked) {
         this.user = user;
         this.userFriend = userFriend;
+        this.isChecked = isChecked;
+    }
+
+    public void updateWaiting(boolean isChecked) {
+        this.isChecked = isChecked;
     }
 }
