@@ -8,5 +8,4 @@ import java.util.Optional;
 
 public interface FriendRepository extends CrudRepository<Friend, Long> {
     Optional<Friend> findAllByUserId(Long userId);
-    Optional<Friend> findFriendsByUserId(Long userId);
 }

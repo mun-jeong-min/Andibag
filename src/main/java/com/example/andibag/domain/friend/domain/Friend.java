@@ -16,16 +16,16 @@ public class Friend {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_friend_id")
-    private Waiting userFriend;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_friend_id")
+    private User userFriend;
+
     @Builder
-    public Friend(User user, Waiting userFriend) {
+    public Friend(User user, User userFriend) {
         this.user = user;
         this.userFriend = userFriend;
     }

@@ -24,6 +24,7 @@ public class NoticeOneReadService {
                 .title(notice.getTitle())
                 .content(notice.getContent())
                 .createAt(notice.getCreateTime())
+                .modifyAt(notice.getModifyTime())
                 .build();
     }
 }

@@ -2,14 +2,15 @@ package com.example.andibag.domain.friend.service;
 
 import com.example.andibag.domain.friend.domain.Friend;
 import com.example.andibag.domain.friend.domain.repository.FriendRepository;
+import com.example.andibag.domain.friend.exception.FriendNotFoundException;
 import com.example.andibag.domain.friend.exception.PhoneMismatchException;
 import com.example.andibag.domain.friend.present.dto.request.FriendAddRequest;
 import com.example.andibag.domain.user.domain.User;
 import com.example.andibag.domain.user.domain.repository.UserRepository;
+import com.example.andibag.domain.user.exception.UserNotFoundException;
 import com.example.andibag.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -18,21 +19,20 @@ public class FriendAddService {
     private final UserRepository userRepository;
     private final UserFacade userFacade;
 
-    @Transactional
-    public void friendAdd(FriendAddRequest request) {
-        User currentUser = userFacade.getCurrentUser();
+    public void AddFriend(FriendAddRequest request) {
+        User user = userFacade.getCurrentUser();
 
-        User toUser = userRepository.findByPhoneNumber(request.getPhoneNumber())
-                .orElseThrow(() -> PhoneMismatchException.EXCEPTION);
+        User friend = userRepository.findByPhoneNumber(request.getPhoneNumber())
+                .orElseThrow(() -> FriendNotFoundException.EXCEPTION);
 
-        if(currentUser.getPhoneNumber() == toUser.getPhoneNumber()) {
+        if (user.getPhoneNumber() == friend.getPhoneNumber()) {
             throw PhoneMismatchException.EXCEPTION;
         }
 
         friendRepository.save(
                 Friend.builder()
-                        .user(toUser)
-                        .user_id(currentUser.getId())
+                        .user(user)
+                        .userFriend(friend)
                         .build()
         );
     }
