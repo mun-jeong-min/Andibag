@@ -4,6 +4,7 @@ import com.example.andibag.domain.notice.domain.repository.NoticeRepository;
 import com.example.andibag.domain.notice.present.dto.response.NoticeAllReadResponse;
 import com.example.andibag.domain.notice.present.dto.response.NoticeResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

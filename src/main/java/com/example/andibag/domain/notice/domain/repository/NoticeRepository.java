@@ -1,6 +1,9 @@
 package com.example.andibag.domain.notice.domain.repository;
 
 import com.example.andibag.domain.notice.domain.Notice;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

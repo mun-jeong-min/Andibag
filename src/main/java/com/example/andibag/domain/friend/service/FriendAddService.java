@@ -7,7 +7,6 @@ import com.example.andibag.domain.friend.exception.PhoneMismatchException;
 import com.example.andibag.domain.friend.present.dto.request.FriendAddRequest;
 import com.example.andibag.domain.user.domain.User;
 import com.example.andibag.domain.user.domain.repository.UserRepository;
-import com.example.andibag.domain.user.exception.UserNotFoundException;
 import com.example.andibag.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -33,6 +32,13 @@ public class FriendAddService {
                 Friend.builder()
                         .user(user)
                         .userFriend(friend)
+                        .build()
+        );
+
+        friendRepository.save(
+                Friend.builder()
+                        .user(friend)
+                        .userFriend(user)
                         .build()
         );
     }

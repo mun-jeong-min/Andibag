@@ -12,8 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+
 @RequiredArgsConstructor
+@Service
 public class AllFriendListService {
     private final FriendRepository friendRepository;
     private final UserFacade userFacade;
@@ -21,12 +22,12 @@ public class AllFriendListService {
     @Transactional(readOnly = true)
     public FriendAllResponse getAllFriend() {
         User user = userFacade.getCurrentUser();
-
-        List<FriendResponse> list = friendRepository.findAllByUserId(user.getId())
+        
+        List<FriendResponse> list = friendRepository.findAllByUser(user)
                 .stream()
                 .map(friend -> new FriendResponse(friend.getUserFriend().getId(), friend.getUserFriend().getNickname(), friend.getUserFriend().getPhoneNumber()))
                 .collect(Collectors.toList());
-        
+
         return new FriendAllResponse(list);
     }
 }
