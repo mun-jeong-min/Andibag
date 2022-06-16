@@ -1,4 +1,4 @@
-package com.example.andibag.domain.friend.present.dto.request;
+package com.example.andibag.domain.user.present.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

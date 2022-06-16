@@ -1,14 +1,12 @@
 package com.example.andibag.domain.user.present;
 
+import com.example.andibag.domain.user.present.dto.request.IdCheckRequest;
 import com.example.andibag.domain.user.present.dto.request.SignInRequest;
 import com.example.andibag.domain.user.present.dto.request.SignUpRequest;
 import com.example.andibag.domain.user.present.dto.response.TokenResponse;
 import com.example.andibag.domain.user.present.dto.response.UserListResponse;
 import com.example.andibag.domain.user.present.dto.response.UserProfileResponse;
-import com.example.andibag.domain.user.service.ProfileListService;
-import com.example.andibag.domain.user.service.UserProfileService;
-import com.example.andibag.domain.user.service.UserSignInService;
-import com.example.andibag.domain.user.service.UserSignUpService;
+import com.example.andibag.domain.user.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +22,7 @@ public class UserController {
     private final UserSignInService userSignInService;
     private final ProfileListService profileListService;
     private final UserProfileService userProfileService;
+    private final SignupIdCheckService signupIdCheckService;
     
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
@@ -44,5 +43,11 @@ public class UserController {
     @GetMapping("/{id}")
     public UserProfileResponse userProfile(@PathVariable("id") Long id) {
         return userProfileService.userProfile(id);
+    }
+
+    @PostMapping("/signup/check")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void idCheck(@RequestBody @Valid IdCheckRequest request) {
+        signupIdCheckService.idCheck(request);
     }
 }
