@@ -24,7 +24,3 @@ public class UserProfileService {
                 .build();
     }
 }
-
-/*
-request dto에서 받아온 phoneNumber를 phoneNumberList에서 찾아서 맞는 유저를
-*/

@@ -4,6 +4,7 @@ import com.example.andibag.domain.friend.present.dto.request.FriendAddRequest;
 import com.example.andibag.domain.friend.present.dto.response.FriendAllResponse;
 import com.example.andibag.domain.friend.service.AllFriendListService;
 import com.example.andibag.domain.friend.service.FriendAddService;
+import com.example.andibag.domain.friend.service.IdCheckService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import javax.validation.Valid;
 public class FriendController {
     private final FriendAddService friendAddService;
     private final AllFriendListService allFriendListService;
+    private final IdCheckService idCheckService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -27,4 +29,7 @@ public class FriendController {
     public FriendAllResponse getAllFriend() {
         return allFriendListService.getAllFriend();
     }
+
+    @PostMapping("/check")
+    public void
 }

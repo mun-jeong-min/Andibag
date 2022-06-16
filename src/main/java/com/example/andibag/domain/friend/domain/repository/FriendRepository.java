@@ -10,4 +10,5 @@ import java.util.Optional;
 
 public interface FriendRepository extends CrudRepository<Friend, Long> {
     List<Friend> findAllByUser(User user);
+    Optional<Friend> findFriendByUser(User user);
 }

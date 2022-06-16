@@ -23,7 +23,7 @@ public class FriendAddService {
 
         User friend = userRepository.findByPhoneNumber(request.getPhoneNumber())
                 .orElseThrow(() -> FriendNotFoundException.EXCEPTION);
-
+        
         if (user.getPhoneNumber() == friend.getPhoneNumber()) {
             throw PhoneMismatchException.EXCEPTION;
         }

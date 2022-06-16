@@ -8,5 +8,5 @@ import lombok.Getter;
 @AllArgsConstructor
 @Builder
 public class PhoneResponse {
-    private final String phoneNumber;
+    private final String accountId;
 }
