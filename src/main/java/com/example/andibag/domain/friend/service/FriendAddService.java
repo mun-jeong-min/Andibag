@@ -7,6 +7,7 @@ import com.example.andibag.domain.friend.exception.PhoneMismatchException;
 import com.example.andibag.domain.friend.present.dto.request.FriendAddRequest;
 import com.example.andibag.domain.user.domain.User;
 import com.example.andibag.domain.user.domain.repository.UserRepository;
+import com.example.andibag.domain.user.exception.UserNotFoundException;
 import com.example.andibag.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ public class FriendAddService {
         User user = userFacade.getCurrentUser();
 
         User friend = userRepository.findByPhoneNumber(request.getPhoneNumber())
-                .orElseThrow(() -> FriendNotFoundException.EXCEPTION);
-        
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+
         if (user.getPhoneNumber() == friend.getPhoneNumber()) {
             throw PhoneMismatchException.EXCEPTION;
         }
