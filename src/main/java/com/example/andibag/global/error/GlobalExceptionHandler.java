@@ -15,16 +15,22 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
     @ExceptionHandler(ProjectException.class)
     public ResponseEntity<ErrorResponse> handleException(ProjectException e) {
-        final ErrorCode errorCode = e.getErrorCode();
-        return new ResponseEntity<>(new ErrorResponse(errorCode.getMessage()), HttpStatus.valueOf(errorCode.getStatus()));
+        ErrorCode errorCode = e.getErrorCode();
+
+        return new ResponseEntity<>(
+                new ErrorResponse(errorCode.getStatus(), errorCode.getMessage()),
+                HttpStatus.valueOf(errorCode.getStatus())
+        );
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidException(MethodArgumentNotValidException e) {
         return new ResponseEntity<>(
-                new ErrorResponse(e.getBindingResult().getAllErrors().get(0).getDefaultMessage()), HttpStatus.BAD_REQUEST
+                new ErrorResponse(400, e.getBindingResult().getAllErrors().get(0).getDefaultMessage()),
+                HttpStatus.BAD_REQUEST
         );
     }
 }
