@@ -1,6 +1,7 @@
 package com.example.andibag.global.config;
 
 import com.example.andibag.global.security.jwt.JwtTokenProvider;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtTokenProvider jwtTokenProvider;
+    private final ObjectMapper objectMapper;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -52,13 +54,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/comment/{id}").authenticated()
                 .antMatchers(HttpMethod.PUT, "/comment/{id}").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/comment/{id}").authenticated()
-
+                
                 .antMatchers(HttpMethod.POST, "/friend").authenticated()
                 .antMatchers(HttpMethod.GET, "/friend").authenticated()
+
+                .antMatchers(HttpMethod.POST, "/reply/{id}").authenticated()
 
                 .anyRequest().permitAll()
 
                 .and()
-                .apply(new FilterConfig(jwtTokenProvider));
+                .apply(new FilterConfig(jwtTokenProvider, objectMapper));
     }
 }
