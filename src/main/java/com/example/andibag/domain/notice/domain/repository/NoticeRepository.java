@@ -12,4 +12,5 @@ import java.util.Optional;
 public interface NoticeRepository extends CrudRepository<Notice, Long> {
     Optional<Notice> findNoticeById(Long id);
     List<Notice> findAll();
+    
 }

@@ -1,5 +1,6 @@
 package com.example.andibag.domain.notice.present.dto.response;
 
+import com.example.andibag.domain.comment.domain.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
