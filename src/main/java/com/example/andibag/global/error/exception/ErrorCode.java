@@ -16,9 +16,9 @@ public enum ErrorCode {
     USER_NOT_FOUND(404, "USER-404-1", "User Not Found"),
     REFRESH_NOT_FOUND(404, "jwt-404-1", "RefreshToken Not Found"),
     NOTICE_NOT_FOUND(404, "notice-404-1", "Notice Not Found"),
+    REPLY_NOT_FOUND(404, "reply-404-1", "Reply Not Found"),
     COMMENT_NOT_FOUND(404, "comment-404-1", "Comment Not Found"),
-    WAITING_NOT_FOUND(404, "friend-404-1", "Waiting Friend Check Not Found"),
-    FRIEND_NOT_FOUND(404, "friend-404-2", "Friend Not Found"),
+    FRIEND_NOT_FOUND(404, "friend-404-1", "Friend Not Found"),
 
     USER_EXISTS(409, "USER-409-1", "User Exists");
 
