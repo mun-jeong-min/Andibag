@@ -43,12 +43,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/notice/{id}").authenticated()
                 .antMatchers(HttpMethod.PUT, "/notice/{id}").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/notice/{id}").authenticated()
-                
+
                 .antMatchers(HttpMethod.POST, "/user/signup").permitAll()
                 .antMatchers(HttpMethod.POST, "/user/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/user").authenticated()
                 .antMatchers(HttpMethod.GET, "/user/{id}").authenticated()
-                
+
                 .antMatchers(HttpMethod.PUT, "/auth").authenticated()
 
                 .antMatchers(HttpMethod.POST, "/comment/{id}").authenticated()
@@ -60,10 +60,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(HttpMethod.POST, "/reply/{id}").authenticated()
                 .antMatchers(HttpMethod.PUT, "/reply/{id}").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/reply/{id}").authenticated()
 
                 .anyRequest().permitAll()
 
                 .and()
                 .apply(new FilterConfig(jwtTokenProvider, objectMapper));
     }
+    // 이미지, 게시판 읽어올때 댓글이라 대댓글 다 읽어오기
+    // 전화번호에 맞는 친구 검색하는 기능
+    // 채팅
+    // fcm
 }

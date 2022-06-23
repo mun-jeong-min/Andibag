@@ -34,11 +34,13 @@ public class NoticeController {
     }
 
     @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void noticeUpdate(@PathVariable("id") Long id, @RequestBody @Valid NoticeUpdateRequest request) {
         noticeUpdateService.updateNotice(id, request);
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void noticeDelete(@PathVariable("id") Long id) {
         noticeDeleteService.noticeDelete(id);
     }
