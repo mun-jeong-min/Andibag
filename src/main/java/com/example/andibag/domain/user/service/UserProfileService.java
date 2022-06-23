@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserProfileService {
     private final UserRepository userRepository;
-    private final FriendRepository friendRepository;
 
     public UserProfileResponse userProfile(Long id) {
         User user = userRepository.findById(id)
