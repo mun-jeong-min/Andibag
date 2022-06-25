@@ -2,8 +2,11 @@ package com.example.andibag.domain.comment.present;
 
 import com.example.andibag.domain.comment.present.dto.request.CommentCreateRequest;
 import com.example.andibag.domain.comment.present.dto.request.CommentUpdateRequest;
+import com.example.andibag.domain.comment.present.dto.response.QueryReadResponse;
+import com.example.andibag.domain.comment.present.dto.response.QueryResponse;
 import com.example.andibag.domain.comment.service.CommentCreateService;
 import com.example.andibag.domain.comment.service.CommentDeleteService;
+import com.example.andibag.domain.comment.service.QueryReadAllService;
 import com.example.andibag.domain.comment.service.CommentUpdateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,6 +21,7 @@ public class CommentController {
     private final CommentCreateService commentCreateService;
     private final CommentUpdateService commentUpdateService;
     private final CommentDeleteService commentDeleteService;
+    private final QueryReadAllService commentReadService;
 
     @PostMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
@@ -35,5 +39,10 @@ public class CommentController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void commentDelete(@PathVariable("id") Long id) {
         commentDeleteService.commentDelete(id);
+    }
+
+    @GetMapping("/{notice-id}")
+    public QueryResponse readComment(@PathVariable("notice-id") Long id) {
+        return commentReadService.readAllComments(id);
     }
 }
