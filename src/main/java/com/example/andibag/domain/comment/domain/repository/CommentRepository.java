@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface CommentRepository extends CrudRepository<Comment, Long> {
+public interface CommentRepository extends CrudRepository<Comment, Long>, CommentCustom {
     Optional<Comment> findCommentById(Long id);
     List<Comment> findAllByNotice(Notice notice);
 }

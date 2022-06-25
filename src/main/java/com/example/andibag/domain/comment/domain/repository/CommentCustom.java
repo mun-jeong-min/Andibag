@@ -7,6 +7,7 @@ import com.example.andibag.domain.reply.domain.Reply;
 import java.util.List;
 
 public interface CommentCustom {
+    Notice getNoticeById(Long id);
     List<Comment> getCommentById(Long id);
     List<Reply> getReplyById(Long id);
 }
