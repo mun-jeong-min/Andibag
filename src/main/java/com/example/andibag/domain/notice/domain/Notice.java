@@ -1,6 +1,6 @@
 package com.example.andibag.domain.notice.domain;
 
-import com.example.andibag.domain.comment.domain.Comment;
+import com.example.andibag.domain.notice.domain.repository.type.NoticeCategory;
 import com.example.andibag.domain.user.domain.User;
 import com.example.andibag.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
@@ -29,15 +29,20 @@ public class Notice extends BaseTimeEntity {
     @Column
     private String content;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private NoticeCategory noticeType;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Builder
-    public Notice(String title, String content, User user) {
+    public Notice(String title, String content, User user, NoticeCategory noticeType) {
         this.title = title;
         this.content = content;
         this.user = user;
+        this.noticeType = noticeType;
     }
 
     public void updateNotice(String title, String content) {

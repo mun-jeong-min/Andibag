@@ -1,7 +1,6 @@
 package com.example.andibag.domain.notice.present.dto.response;
 
-import com.example.andibag.domain.comment.domain.Comment;
-import com.querydsl.core.annotations.QueryProjection;
+import com.example.andibag.domain.notice.domain.repository.type.NoticeCategory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,4 +16,5 @@ public class NoticeResponse {
     private final String content;
     private final LocalDateTime createAt;
     private final LocalDateTime modifyAt;
+    private final NoticeCategory noticeType;
 }
