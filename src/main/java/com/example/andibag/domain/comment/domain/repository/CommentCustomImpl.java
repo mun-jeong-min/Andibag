@@ -1,9 +1,7 @@
 package com.example.andibag.domain.comment.domain.repository;
 
 import com.example.andibag.domain.comment.domain.Comment;
-import com.example.andibag.domain.comment.exception.CommentNotFoundException;
 import com.example.andibag.domain.notice.domain.Notice;
-import com.example.andibag.domain.notice.exception.NoticeNotFoundException;
 import com.example.andibag.domain.reply.domain.Reply;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +13,7 @@ import static com.example.andibag.domain.notice.domain.QNotice.notice;
 import static com.example.andibag.domain.reply.domain.QReply.reply;
 
 @RequiredArgsConstructor
-public class CommentCustomImpl implements CommentCustom{
+public class CommentCustomImpl implements CommentCustom {
     private final JPAQueryFactory query;
 
     @Override
@@ -23,7 +21,7 @@ public class CommentCustomImpl implements CommentCustom{
         Notice result = query.selectFrom(notice)
                 .where(notice.id.eq(id))
                 .fetchFirst();
-        if(result == null)
+        if (result == null)
             throw new RuntimeException("post not found");
 
         return result;

@@ -18,8 +18,6 @@ public class NoticeCreateService {
     private final NoticeRepository noticeRepository;
     private final UserFacade userFacade;
 
-    Random random = new Random();
-
     @Transactional
     public void noticeCreate(NoticeCreateRequest request) {
 
