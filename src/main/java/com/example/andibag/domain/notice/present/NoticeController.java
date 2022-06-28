@@ -1,10 +1,13 @@
 package com.example.andibag.domain.notice.present;
 
+import com.example.andibag.domain.notice.domain.repository.type.NoticeCategory;
 import com.example.andibag.domain.notice.present.dto.reqeust.NoticeCreateRequest;
 import com.example.andibag.domain.notice.present.dto.reqeust.NoticeUpdateRequest;
-import com.example.andibag.domain.notice.present.dto.response.NoticeAllReadResponse;
-import com.example.andibag.domain.notice.present.dto.response.NoticeResponse;
-import com.example.andibag.domain.notice.service.*;
+import com.example.andibag.domain.notice.present.dto.response.QueryNoticeResponse;
+import com.example.andibag.domain.notice.service.NoticeAllReadService;
+import com.example.andibag.domain.notice.service.NoticeCreateService;
+import com.example.andibag.domain.notice.service.NoticeDeleteService;
+import com.example.andibag.domain.notice.service.NoticeUpdateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,16 +18,10 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/notice")
 public class NoticeController {
-    private final NoticeOneReadService noticeOneReadService;
     private final NoticeCreateService noticeCreateService;
     private final NoticeUpdateService noticeUpdateService;
     private final NoticeDeleteService noticeDeleteService;
     private final NoticeAllReadService noticeAllReadService;
-    
-    @GetMapping("/{id}")
-    public NoticeResponse noticeOneRead(@PathVariable("id") Long id) {
-        return noticeOneReadService.noticeOneRead(id);
-    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -44,8 +41,8 @@ public class NoticeController {
         noticeDeleteService.noticeDelete(id);
     }
 
-    @GetMapping
-    public NoticeAllReadResponse noticeList() {
-        return noticeAllReadService.noticeAllRead();
+    @GetMapping("/{category}")
+    public QueryNoticeResponse noticeList(@PathVariable("category") NoticeCategory category) {
+        return noticeAllReadService.noticeAllRead(category);
     }
 }

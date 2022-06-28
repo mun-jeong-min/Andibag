@@ -39,15 +39,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 
                 .antMatchers(HttpMethod.POST, "/notice").authenticated()
-                .antMatchers(HttpMethod.GET, "/notice").authenticated()
-                .antMatchers(HttpMethod.GET, "/notice/{id}").authenticated()
                 .antMatchers(HttpMethod.PUT, "/notice/{id}").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/notice/{id}").authenticated()
+                .antMatchers(HttpMethod.GET, "/notice/{category}").authenticated()
 
                 .antMatchers(HttpMethod.POST, "/user/signup").permitAll()
                 .antMatchers(HttpMethod.POST, "/user/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/user").authenticated()
                 .antMatchers(HttpMethod.GET, "/user/{id}").authenticated()
+                .antMatchers(HttpMethod.GET, "/user/signup/check").permitAll()
 
                 .antMatchers(HttpMethod.PUT, "/auth").authenticated()
 
