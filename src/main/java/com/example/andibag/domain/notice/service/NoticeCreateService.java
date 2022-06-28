@@ -29,6 +29,7 @@ public class NoticeCreateService {
                         .content(request.getContent())
                         .user(user)
                         .noticeType(NoticeCategory.values()[new Random().nextInt(NoticeCategory.values().length)])
+                        .isMine(true)
                         .build()
         );
     }

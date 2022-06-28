@@ -25,9 +25,10 @@ public class QueryNoticeResponse {
         private final LocalDateTime createAt;
         private final LocalDateTime modifyAt;
         private final String noticeType;
+        private final Boolean isMine;
 
         @QueryProjection
-        public NoticeQueryResponse(Long id, String nickname, String title, String content, LocalDateTime createAt, LocalDateTime modifyAt, String noticeType) {
+        public NoticeQueryResponse(Long id, String nickname, String title, String content, LocalDateTime createAt, LocalDateTime modifyAt, String noticeType, Boolean isMine) {
             this.id = id;
             this.nickname = nickname;
             this.title = title;
@@ -35,6 +36,7 @@ public class QueryNoticeResponse {
             this.createAt = createAt;
             this.modifyAt = modifyAt;
             this.noticeType = noticeType;
+            this.isMine = isMine;
         }
     }
 }

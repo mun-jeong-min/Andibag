@@ -37,12 +37,23 @@ public class Notice extends BaseTimeEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @NotNull
+    @Column
+    private Boolean isMine;
+
     @Builder
-    public Notice(String title, String content, User user, NoticeCategory noticeType) {
+    public Notice(
+            String title,
+            String content,
+            User user,
+            NoticeCategory noticeType,
+            Boolean isMine
+    ){
         this.title = title;
         this.content = content;
         this.user = user;
         this.noticeType = noticeType;
+        this.isMine = isMine;
     }
 
     public void updateNotice(String title, String content) {

@@ -25,6 +25,7 @@ public class NoticeAllReadService {
                         .createAt(notice.getCreateTime())
                         .modifyAt(notice.getModifyTime())
                         .noticeType(notice.getNoticeType().getName())
+                        .isMine(notice.getIsMine())
                         .build()
                 )
                 .collect(Collectors.toList());
