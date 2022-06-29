@@ -23,3 +23,6 @@ jwt:
   refresh-exp: ${JWT_REFRESH_EXP}
   header: ${JWT_HEADER}
   prefix: ${JWT_PREFIX}
+
+socket:
+  port: ${SOCKET_PORT}

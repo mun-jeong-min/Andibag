@@ -20,6 +20,7 @@ public class NoticeAllReadService {
         List<QueryNoticeResponse.NoticeQueryResponse> noticeList = noticeRepository.findNoticesByNoticeType(category)
                 .stream().map(notice -> QueryNoticeResponse.NoticeQueryResponse.builder()
                         .id(notice.getId())
+                        .nickname(notice.getUser().getNickname())
                         .title(notice.getTitle())
                         .content(notice.getContent())
                         .createAt(notice.getCreateTime())
