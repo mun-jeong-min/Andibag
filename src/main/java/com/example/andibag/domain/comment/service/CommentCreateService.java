@@ -25,6 +25,7 @@ public class CommentCreateService {
                 .user(user)
                 .notice(notice)
                 .content(request.getContent())
+                .isMine(true)
                 .build());
     }
 }

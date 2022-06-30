@@ -31,11 +31,16 @@ public class Reply extends BaseTimeEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @NotNull
+    @Column
+    private Boolean isMine;
+
     @Builder
-    public Reply(String content, Comment comment, User user) {
+    public Reply(String content, Comment comment, User user, Boolean isMine) {
         this.content = content;
         this.comment = comment;
         this.user = user;
+        this.isMine = isMine;
     }
 
     public void updateReply(String content) {

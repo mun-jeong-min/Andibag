@@ -13,6 +13,7 @@ import java.util.List;
 public class QueryReadResponse {
     private final String nickname;
     private final String content;
+    private final Boolean isMine;
     private final List<ReplyDto> replyDtoList;
 
     @Getter
@@ -20,14 +21,16 @@ public class QueryReadResponse {
     public static class ReplyDto{
         private final String nickname;
         private final String content;
+        private final Boolean isMine;
     }
 
-    public QueryReadResponse(String nickname, String content, List<Reply> list) {
+    public QueryReadResponse(String nickname, String content, Boolean isMine, List<Reply> list) {
         this.nickname = nickname;
         this.content = content;
+        this.isMine = isMine;
         this.replyDtoList = new ArrayList<>();
         for(Reply reply : list) {
-            replyDtoList.add(new ReplyDto(reply.getUser().getNickname(), reply.getContent()));
+            replyDtoList.add(new ReplyDto(reply.getUser().getNickname(), reply.getContent(), reply.getIsMine()));
         }
     }
 }

@@ -34,11 +34,16 @@ public class Comment extends BaseTimeEntity {
     @JoinColumn(name = "notice_id", nullable = false)
     private Notice notice;
 
+    @NotNull
+    @Column
+    private Boolean isMine;
+
     @Builder
-    public Comment(String content, User user, Notice notice) {
+    public Comment(String content, User user, Notice notice, Boolean isMine) {
         this.content = content;
         this.user = user;
         this.notice = notice;
+        this.isMine = isMine;
     }
 
     public void updateComment(String content) {
