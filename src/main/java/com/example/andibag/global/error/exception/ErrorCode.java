@@ -6,6 +6,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ErrorCode {
+    UPLOAD_FILE_FAILED(400, "AUTH-400-1", "Upload File Failed"),
+
     INVALID_JWT(401, "JWT-401-1", "Invalid Jwt"),
     PASSWORD_MISMATCH(401,"auth-401-1","Password Mismatch"),
     PHONE_MISMATCH(401, "user-401-1", "PhoneNumber Mismatch"),
