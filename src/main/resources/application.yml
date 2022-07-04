@@ -24,5 +24,14 @@ jwt:
   header: ${JWT_HEADER}
   prefix: ${JWT_PREFIX}
 
+aws:
+  s3:
+    access-key: ${IAM_ACCESS_KEY}
+    secret-key: ${IAM_SECRET_KEY}
+    bucket: ${BUCKET}
+    static: ${IAM_REGION:ap-northeast-2}
+  stack:
+    auto: false
+
 socket:
   port: ${SOCKET_PORT}
