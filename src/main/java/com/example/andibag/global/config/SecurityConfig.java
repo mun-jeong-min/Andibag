@@ -60,6 +60,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/friend").authenticated()
                 .antMatchers(HttpMethod.GET, "/friend/find").authenticated()
                 .antMatchers(HttpMethod.GET, "/friend/search").authenticated()
+                .antMatchers(HttpMethod.GET, "/friend/memo").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/friend/memo/{id}").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/friend").authenticated()
 
                 .antMatchers(HttpMethod.POST, "/reply/{id}").authenticated()
                 .antMatchers(HttpMethod.PUT, "/reply/{id}").authenticated()
@@ -72,4 +75,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .apply(new FilterConfig(jwtTokenProvider, objectMapper));
     }
+    
 }
