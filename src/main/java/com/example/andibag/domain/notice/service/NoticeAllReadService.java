@@ -31,6 +31,8 @@ public class NoticeAllReadService {
                 )
                 .collect(Collectors.toList());
 
+        
+
         return new QueryNoticeResponse(noticeList);
     }
 }
