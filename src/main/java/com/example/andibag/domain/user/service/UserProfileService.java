@@ -1,6 +1,5 @@
 package com.example.andibag.domain.user.service;
 
-import com.example.andibag.domain.friend.domain.repository.FriendRepository;
 import com.example.andibag.domain.user.domain.User;
 import com.example.andibag.domain.user.domain.repository.UserRepository;
 import com.example.andibag.domain.user.exception.UserNotFoundException;

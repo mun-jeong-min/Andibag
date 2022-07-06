@@ -29,6 +29,7 @@ public class Notice extends BaseTimeEntity {
     @Column
     private String content;
 
+    @Column
     private String image;
 
     @NotNull

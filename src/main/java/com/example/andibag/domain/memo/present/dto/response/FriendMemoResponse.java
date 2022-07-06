@@ -1,8 +1,7 @@
-package com.example.andibag.domain.friend.present.dto.response;
+package com.example.andibag.domain.memo.present.dto.response;
 
-import com.example.andibag.domain.friend.domain.Save;
+import com.example.andibag.domain.friend.present.dto.response.FriendResponse;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 
 import java.util.List;
