@@ -7,6 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ErrorCode {
     UPLOAD_FILE_FAILED(400, "AUTH-400-1", "Upload File Failed"),
+    IMAGE_VALUE_NOT_FOUND(400, "COMMON-404-1", "Image Value Not Found"),
+    SAVE_IMAGE_FAILED(400, "COMMON-400-1", "Save Image Failed"),
 
     INVALID_JWT(401, "JWT-401-1", "Invalid Jwt"),
     PASSWORD_MISMATCH(401,"auth-401-1","Password Mismatch"),
