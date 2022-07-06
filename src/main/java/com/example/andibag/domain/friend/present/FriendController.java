@@ -3,9 +3,11 @@ package com.example.andibag.domain.friend.present;
 import com.example.andibag.domain.friend.present.dto.request.FriendAddRequest;
 import com.example.andibag.domain.friend.present.dto.request.FriendSearchRequest;
 import com.example.andibag.domain.friend.present.dto.response.FriendAllResponse;
-import com.example.andibag.domain.friend.present.dto.response.FriendMemoResponse;
 import com.example.andibag.domain.friend.present.dto.response.FriendResponse;
-import com.example.andibag.domain.friend.service.*;
+import com.example.andibag.domain.friend.service.AllFriendListService;
+import com.example.andibag.domain.friend.service.FriendAddService;
+import com.example.andibag.domain.friend.service.FriendSearchMemoService;
+import com.example.andibag.domain.friend.service.FriendSearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +22,6 @@ public class FriendController {
     private final AllFriendListService allFriendListService;
     private final FriendSearchService friendSearchService;
     private final FriendSearchMemoService friendSearchMemoService;
-    private final FriendMemoService friendMemoService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -47,22 +48,5 @@ public class FriendController {
     @GetMapping("/search")
     public FriendResponse searchFriend(@RequestBody @Valid FriendSearchRequest request) {
         return friendSearchMemoService.friendMemo(request);
-    }
-
-    @GetMapping("/memo")
-    public FriendMemoResponse memoSearch() {
-        return friendMemoService.friendMemo();
-    }
-
-    @DeleteMapping("/memo/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteMemo(@PathVariable("id") Long id) {
-        friendMemoService.deleteMemo(id);
-    }
-
-    @DeleteMapping
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAllMemo() {
-        friendMemoService.deleteAll();
     }
 }

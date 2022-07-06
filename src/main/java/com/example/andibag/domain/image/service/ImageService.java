@@ -1,7 +1,7 @@
 package com.example.andibag.domain.image.service;
 
 import com.example.andibag.domain.image.present.dto.ImageResponse;
-import com.example.andibag.infrastructure.s3.S3Utils;
+import com.example.andibag.infrastructure.s3.S3Facade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class ImageService {
-    private final S3Utils s3Utils;
+    private final S3Facade s3Utils;
 
     @Transactional(readOnly = true)
-    public ImageResponse queryImage(List<MultipartFile> file)  {
+    public ImageResponse queryImage(List<MultipartFile> file) {
         List<String> image = file.stream()
                 .map(s3Utils::upload)
                 .collect(Collectors.toList());
