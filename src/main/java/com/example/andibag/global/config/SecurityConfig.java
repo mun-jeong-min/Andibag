@@ -60,9 +60,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/friend").authenticated()
                 .antMatchers(HttpMethod.GET, "/friend/find").authenticated()
                 .antMatchers(HttpMethod.GET, "/friend/search").authenticated()
-                .antMatchers(HttpMethod.GET, "/friend/memo").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/friend/memo/{id}").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/friend").authenticated()
 
                 .antMatchers(HttpMethod.POST, "/reply/{id}").authenticated()
                 .antMatchers(HttpMethod.PUT, "/reply/{id}").authenticated()
@@ -70,10 +67,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(HttpMethod.POST, "/image").authenticated()
 
+                .antMatchers(HttpMethod.GET, "/memo").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/memo/{id}").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/memo").authenticated()
+
                 .anyRequest().permitAll()
 
                 .and()
                 .apply(new FilterConfig(jwtTokenProvider, objectMapper));
     }
-    
+    // 이미지
+    // 채팅
+    // fcm
 }
