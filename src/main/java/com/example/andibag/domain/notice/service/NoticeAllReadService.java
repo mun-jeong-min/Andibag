@@ -23,6 +23,7 @@ public class NoticeAllReadService {
                         .nickname(notice.getUser().getNickname())
                         .title(notice.getTitle())
                         .content(notice.getContent())
+                        .image(notice.getImage())
                         .createAt(notice.getCreateTime())
                         .modifyAt(notice.getModifyTime())
                         .noticeType(notice.getNoticeType().getName())

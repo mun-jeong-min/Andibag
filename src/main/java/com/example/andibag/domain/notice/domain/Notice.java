@@ -29,6 +29,8 @@ public class Notice extends BaseTimeEntity {
     @Column
     private String content;
 
+    private String image;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private NoticeCategory noticeType;
@@ -45,12 +47,14 @@ public class Notice extends BaseTimeEntity {
     public Notice(
             String title,
             String content,
+            String image,
             User user,
             NoticeCategory noticeType,
             Boolean isMine
     ){
         this.title = title;
         this.content = content;
+        this.image = image;
         this.user = user;
         this.noticeType = noticeType;
         this.isMine = isMine;
