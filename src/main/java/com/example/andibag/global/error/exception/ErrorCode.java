@@ -7,7 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ErrorCode {
     UPLOAD_FILE_FAILED(400, "AUTH-400-1", "Upload File Failed"),
-    IMAGE_VALUE_NOT_FOUND(400, "COMMON-404-1", "Image Value Not Found"),
     SAVE_IMAGE_FAILED(400, "COMMON-400-1", "Save Image Failed"),
 
     INVALID_JWT(401, "JWT-401-1", "Invalid Jwt"),
@@ -16,7 +15,7 @@ public enum ErrorCode {
 
     EXPIRED_JWT(401, "jwt-401-2", "Expired Jwt"),
 
-
+    IMAGE_VALUE_NOT_FOUND(404, "COMMON-404-1", "Image Value Not Found"),
     USER_NOT_FOUND(404, "USER-404-1", "User Not Found"),
     REFRESH_NOT_FOUND(404, "jwt-404-1", "RefreshToken Not Found"),
     NOTICE_NOT_FOUND(404, "notice-404-1", "Notice Not Found"),

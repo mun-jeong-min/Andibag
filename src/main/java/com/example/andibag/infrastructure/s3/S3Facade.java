@@ -36,6 +36,7 @@ public class S3Facade implements ImageUtil {
             );
             amazonS3Client.putObject(putObjectRequest.withCannedAcl(CannedAccessControlList.PublicRead));
         } catch (Exception e) {
+            e.printStackTrace();
             throw SaveImageFailedException.EXCEPTION;
         }
         return getFileUrl(fileName);
