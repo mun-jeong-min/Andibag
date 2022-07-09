@@ -23,7 +23,7 @@ public class NoticeAllReadService {
                         .nickname(notice.getUser().getNickname())
                         .title(notice.getTitle())
                         .content(notice.getContent())
-                        .image(notice.getImage())
+                        .imageUrl(notice.getImageUrl())
                         .createAt(notice.getCreateTime())
                         .modifyAt(notice.getModifyTime())
                         .noticeType(notice.getNoticeType().getName())
@@ -31,7 +31,6 @@ public class NoticeAllReadService {
                         .build()
                 )
                 .collect(Collectors.toList());
-
 
         return new QueryNoticeResponse(noticeList);
     }

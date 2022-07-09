@@ -27,6 +27,7 @@ public class NoticeCreateService {
                 Notice.builder()
                         .title(request.getTitle())
                         .content(request.getContent())
+                        .imageUrl(request.getImageUrl())
                         .user(user)
                         .noticeType(NoticeCategory.values()[new Random().nextInt(NoticeCategory.values().length)])
                         .isMine(true)

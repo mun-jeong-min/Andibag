@@ -16,4 +16,6 @@ public class NoticeCreateRequest {
 
     @NotBlank(message = "content가 비어있습니다.")
     private String content;
+
+    private String imageUrl;
 }

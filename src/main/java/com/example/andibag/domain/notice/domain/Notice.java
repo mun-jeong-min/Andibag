@@ -30,7 +30,7 @@ public class Notice extends BaseTimeEntity {
     private String content;
 
     @Column
-    private String image;
+    private String imageUrl;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -48,14 +48,14 @@ public class Notice extends BaseTimeEntity {
     public Notice(
             String title,
             String content,
-            String image,
+            String imageUrl,
             User user,
             NoticeCategory noticeType,
             Boolean isMine
     ){
         this.title = title;
         this.content = content;
-        this.image = image;
+        this.imageUrl = imageUrl;
         this.user = user;
         this.noticeType = noticeType;
         this.isMine = isMine;
