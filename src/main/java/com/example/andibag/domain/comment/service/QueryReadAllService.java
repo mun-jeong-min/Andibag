@@ -20,7 +20,7 @@ public class QueryReadAllService {
     public QueryResponse readAllComments(Long noticeId) {
         List<QueryReadResponse> comment = commentRepository.getCommentById(noticeId)
                 .stream()
-                .map(comment1 -> new QueryReadResponse(comment1.getUser().getNickname(), comment1.getContent(), comment1.getIsMine(),
+                .map(comment1 -> new QueryReadResponse(comment1.getUser().getNickname(), comment1.getContent(),comment1.getUser().getImageUrl(), comment1.getIsMine(),
                         commentRepository.getReplyById(comment1.getId()
                         )))
                 .collect(Collectors.toList());

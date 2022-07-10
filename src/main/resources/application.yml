@@ -38,3 +38,7 @@ cloud:
 
 socket:
     port: ${SOCKET_PORT:8081}
+
+logging:
+  level:
+    root: info
