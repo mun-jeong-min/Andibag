@@ -10,5 +10,6 @@ import lombok.Getter;
 public class FriendResponse {
     private final Long id;
     private final String nickname;
+    private final String imageUrl;
     private final String phoneNumber;
 }

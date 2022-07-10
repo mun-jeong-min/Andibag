@@ -32,6 +32,9 @@ public class User {
     @Column(unique = true)
     private String nickname;
 
+    @Column
+    private String imageUrl;
+
     @NotNull
     @Size(max = 11)
     @Column(unique = true)
@@ -42,10 +45,11 @@ public class User {
     private Authority authority;
 
     @Builder
-    public User(String accountId, String password, String nickname, String phoneNumber, Authority authority) {
+    public User(String accountId, String password, String nickname, String imageUrl, String phoneNumber, Authority authority) {
         this.accountId = accountId;
         this.nickname = nickname;
         this.password = password;
+        this.imageUrl = imageUrl;
         this.phoneNumber = phoneNumber;
         this.authority = authority;
     }

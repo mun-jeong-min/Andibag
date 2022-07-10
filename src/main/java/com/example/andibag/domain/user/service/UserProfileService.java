@@ -18,6 +18,7 @@ public class UserProfileService {
 
         return UserProfileResponse.builder()
                 .nickname(user.getNickname())
+                .imageUrl(user.getImageUrl())
                 .phoneNumber(user.getPhoneNumber())
                 .build();
     }

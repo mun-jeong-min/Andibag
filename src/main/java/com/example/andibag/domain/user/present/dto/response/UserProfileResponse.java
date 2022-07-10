@@ -8,4 +8,5 @@ import lombok.Getter;
 public class UserProfileResponse {
     private final String nickname;
     private final String phoneNumber;
+    private final String imageUrl;
 }

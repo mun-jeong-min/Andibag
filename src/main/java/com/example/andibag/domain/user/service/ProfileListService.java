@@ -18,7 +18,7 @@ public class ProfileListService {
     @Transactional(readOnly = true)
     public UserListResponse userList() {
         List<UserResponse> userList = userRepository.findAll()
-                .stream().map(user -> new UserResponse(user.getId(), user.getNickname(), user.getPhoneNumber()))
+                .stream().map(user -> new UserResponse(user.getId(), user.getNickname(), user.getPhoneNumber(), user.getImageUrl()))
                 .collect(Collectors.toList());
 
         return new UserListResponse(userList);
