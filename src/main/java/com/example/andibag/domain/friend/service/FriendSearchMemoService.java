@@ -41,6 +41,7 @@ public class FriendSearchMemoService {
         return FriendResponse.builder()
                 .id(friend.getUserFriend().getId())
                 .nickname(friend.getUserFriend().getNickname())
+                .imageUrl(friend.getUserFriend().getImageUrl())
                 .phoneNumber(friend.getUserFriend().getPhoneNumber())
                 .build();
     }

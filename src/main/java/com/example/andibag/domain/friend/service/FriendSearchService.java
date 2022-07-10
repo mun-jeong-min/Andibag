@@ -28,6 +28,7 @@ public class FriendSearchService {
         return FriendResponse.builder()
                 .id(user.getId())
                 .nickname(user.getNickname())
+                .imageUrl(user.getImageUrl())
                 .phoneNumber(user.getPhoneNumber())
                 .build();
     }

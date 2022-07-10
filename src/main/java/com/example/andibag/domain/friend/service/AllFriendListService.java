@@ -25,7 +25,7 @@ public class AllFriendListService {
         
         List<FriendResponse> list = friendRepository.findAllByUser(user)
                 .stream()
-                .map(friend -> new FriendResponse(friend.getUserFriend().getId(), friend.getUserFriend().getNickname(), friend.getUserFriend().getPhoneNumber()))
+                .map(friend -> new FriendResponse(friend.getUserFriend().getId(), friend.getUserFriend().getNickname(), friend.getUserFriend().getImageUrl(), friend.getUserFriend().getPhoneNumber()))
                 .collect(Collectors.toList());
 
         return new FriendAllResponse(list);
