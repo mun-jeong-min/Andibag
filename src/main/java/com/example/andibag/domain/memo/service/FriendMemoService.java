@@ -28,6 +28,7 @@ public class FriendMemoService {
                 .map(save -> new FriendResponse(
                         save.getMemoFriend().getId(),
                         save.getMemoFriend().getNickname(),
+                        save.getMemoFriend().getImageUrl(),
                         save.getMemoFriend().getPhoneNumber()
                 )).collect(Collectors.toList());
 

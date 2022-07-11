@@ -65,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT, "/reply/{id}").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/reply/{id}").authenticated()
 
-                .antMatchers(HttpMethod.POST, "/image").authenticated()
+                .antMatchers(HttpMethod.POST, "/image").permitAll()
 
                 .antMatchers(HttpMethod.GET, "/memo").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/memo/{id}").authenticated()
