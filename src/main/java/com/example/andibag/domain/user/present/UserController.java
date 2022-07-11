@@ -23,6 +23,7 @@ public class UserController {
     private final ProfileListService profileListService;
     private final UserProfileService userProfileService;
     private final SignupIdCheckService signupIdCheckService;
+    private final MyProfileService myProfileService;
     
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
@@ -40,13 +41,17 @@ public class UserController {
         return profileListService.userList();
     }
 
+    @GetMapping("/my")
+    public UserProfileResponse myProfile() {
+        return myProfileService.myProfile();
+    }
+
     @GetMapping("/{id}")
     public UserProfileResponse userProfile(@PathVariable("id") Long id) {
         return userProfileService.userProfile(id);
     }
 
     @PostMapping("/signup/check")
-    @ResponseStatus(HttpStatus.ACCEPTED)
     public void idCheck(@RequestBody @Valid IdCheckRequest request) {
         signupIdCheckService.idCheck(request);
     }

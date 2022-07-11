@@ -18,7 +18,6 @@ public class S3Facade implements ImageUtil {
     private final S3Properties s3Properties;
     private final AmazonS3Client amazonS3Client;
 
-
     @Override
     public String upload(MultipartFile file) {
         if (file.isEmpty()) {
