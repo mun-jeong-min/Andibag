@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/user/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/user").authenticated()
                 .antMatchers(HttpMethod.GET, "/user/my").authenticated()
-                .antMatchers(HttpMethod.PATCH, "/user/my").authenticated()
+                .antMatchers(HttpMethod.PUT, "/user/my").authenticated()
                 .antMatchers(HttpMethod.GET, "/user/{id}").authenticated()
                 .antMatchers(HttpMethod.POST, "/user/signup/check").permitAll()
 
@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(HttpMethod.POST, "/friend").authenticated()
                 .antMatchers(HttpMethod.GET, "/friend").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/friend/{user-id}/{friend-id}").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/friend/{friend-id}").authenticated()
                 .antMatchers(HttpMethod.POST, "/friend/find").authenticated()
                 .antMatchers(HttpMethod.POST, "/friend/search").authenticated()
 

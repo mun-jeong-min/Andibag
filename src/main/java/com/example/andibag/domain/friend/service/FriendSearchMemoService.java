@@ -34,15 +34,15 @@ public class FriendSearchMemoService {
         saveRepository.save(
                 Memo.builder()
                         .user(currentUser)
-                        .memoFriend(friend.getUserFriend())
+                        .memoFriend(friend.getUser())
                         .build()
         );
 
         return FriendResponse.builder()
-                .id(friend.getUserFriend().getId())
-                .nickname(friend.getUserFriend().getNickname())
-                .imageUrl(friend.getUserFriend().getImageUrl())
-                .phoneNumber(friend.getUserFriend().getPhoneNumber())
+                .id(friend.getUser().getId())
+                .nickname(friend.getUser().getNickname())
+                .imageUrl(friend.getUser().getImageUrl())
+                .phoneNumber(friend.getUser().getPhoneNumber())
                 .build();
     }
 }

@@ -39,10 +39,10 @@ public class FriendController {
         return friendSearchService.findUser(request);
     }
 
-    @DeleteMapping("/{user-id}/{friend-id}")
+    @DeleteMapping("/{friend-id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteFriend(@PathVariable("user-id") Long user_id, @PathVariable("friend-id") Long friend_id) {
-        friendSearchService.deleteFriend(user_id, friend_id);
+    public void deleteFriend(@PathVariable("friend-id") Long friend_id) {
+        friendSearchService.deleteFriend(friend_id);
     }
 
     @PostMapping("/search")

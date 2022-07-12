@@ -34,16 +34,19 @@ public class FriendSearchService {
     }
 
     @Transactional
-    public void deleteFriend(Long user_id, Long friend_id) {
-        User user = userRepository.findById(user_id)
-                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
-        
+    public void deleteFriend(Long friend_id) {
+        User user = userFacade.getCurrentUser();
+
         User userFriend = userRepository.findById(friend_id)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
         Friend friend = friendRepository.findFriendByUserAndUserFriend(user, userFriend)
                 .orElseThrow(() -> FriendNotFoundException.EXCEPTION);
 
+        Friend friend1 = friendRepository.findFriendByUserAndUserFriend(userFriend, user)
+                        .orElseThrow(() -> FriendNotFoundException.EXCEPTION);
+
         friendRepository.delete(friend);
+        friendRepository.delete(friend1);
     }
 }

@@ -47,7 +47,7 @@ public class UserController {
         return myProfileService.myProfile();
     }
 
-    @PatchMapping("/my")
+    @PutMapping("/my")
     public void patchProfile(@RequestBody @Valid UpdateProfileRequest request) {
         myProfileService.patchProfile(request);
     }
