@@ -3,6 +3,7 @@ package com.example.andibag.domain.user.present;
 import com.example.andibag.domain.user.present.dto.request.IdCheckRequest;
 import com.example.andibag.domain.user.present.dto.request.SignInRequest;
 import com.example.andibag.domain.user.present.dto.request.SignUpRequest;
+import com.example.andibag.domain.user.present.dto.request.UpdateProfileRequest;
 import com.example.andibag.domain.user.present.dto.response.TokenResponse;
 import com.example.andibag.domain.user.present.dto.response.UserListResponse;
 import com.example.andibag.domain.user.present.dto.response.UserProfileResponse;
@@ -44,6 +45,11 @@ public class UserController {
     @GetMapping("/my")
     public UserProfileResponse myProfile() {
         return myProfileService.myProfile();
+    }
+
+    @PatchMapping("/my")
+    public void patchProfile(@RequestBody @Valid UpdateProfileRequest request) {
+        myProfileService.patchProfile(request);
     }
 
     @GetMapping("/{id}")

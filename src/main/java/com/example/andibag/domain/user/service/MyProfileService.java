@@ -2,6 +2,7 @@ package com.example.andibag.domain.user.service;
 
 import com.example.andibag.domain.user.domain.User;
 import com.example.andibag.domain.user.facade.UserFacade;
+import com.example.andibag.domain.user.present.dto.request.UpdateProfileRequest;
 import com.example.andibag.domain.user.present.dto.response.UserProfileResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,5 +20,11 @@ public class MyProfileService {
                 .imageUrl(user.getImageUrl())
                 .phoneNumber(user.getPhoneNumber())
                 .build();
+    }
+
+    public void patchProfile(UpdateProfileRequest request) {
+        User user = userFacade.getCurrentUser();
+
+        user.updateUser(request.getNickname(), request.getImageUrl(), request.getPhoneNumber());
     }
 }

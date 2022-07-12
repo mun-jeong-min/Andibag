@@ -53,4 +53,10 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.authority = authority;
     }
+
+    public void updateUser(String nickname, String imageUrl, String phoneNumber) {
+        this.nickname = nickname;
+        this.imageUrl = imageUrl;
+        this.phoneNumber = phoneNumber;
+    }
 }
