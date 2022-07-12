@@ -1,6 +1,7 @@
 package com.example.andibag.domain.reply.domain;
 
 import com.example.andibag.domain.comment.domain.Comment;
+import com.example.andibag.domain.notice.domain.Notice;
 import com.example.andibag.domain.user.domain.User;
 import com.example.andibag.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
@@ -24,6 +25,10 @@ public class Reply extends BaseTimeEntity {
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "notice_id", nullable = false)
+    private Notice notice;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "comment_id", nullable = false)
     private Comment comment;
 
@@ -36,8 +41,9 @@ public class Reply extends BaseTimeEntity {
     private Boolean isMine;
 
     @Builder
-    public Reply(String content, Comment comment, User user, Boolean isMine) {
+    public Reply(String content, Notice notice, Comment comment, User user, Boolean isMine) {
         this.content = content;
+        this.notice = notice;
         this.comment = comment;
         this.user = user;
         this.isMine = isMine;

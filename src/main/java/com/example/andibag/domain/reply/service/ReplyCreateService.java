@@ -25,6 +25,7 @@ public class ReplyCreateService {
                 Reply.builder()
                         .content(request.getContent())
                         .user(user)
+                        .notice(comment.getNotice())
                         .comment(comment)
                         .isMine(true)
                         .build()

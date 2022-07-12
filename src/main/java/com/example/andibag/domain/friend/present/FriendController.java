@@ -34,7 +34,7 @@ public class FriendController {
         return allFriendListService.getAllFriend();
     }
 
-    @GetMapping("/find")
+    @PostMapping("/find")
     public FriendResponse findUser(@RequestBody @Valid FriendAddRequest request) {
         return friendSearchService.findUser(request);
     }

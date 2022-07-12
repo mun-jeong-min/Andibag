@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface CommentRepository extends CrudRepository<Comment, Long>, CommentCustom {
     Optional<Comment> findCommentById(Long id);
     List<Comment> findAllByNotice(Notice notice);
+    List<Comment> deleteAllByNotice(Notice notice);
 }
