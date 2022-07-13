@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
-@ResponseStatus
+@RestController
 @RequestMapping("/memo")
 public class MemoController {
     private final FriendMemoService friendMemoService;

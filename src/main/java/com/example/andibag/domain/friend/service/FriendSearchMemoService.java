@@ -25,8 +25,7 @@ public class FriendSearchMemoService {
     public FriendResponse friendMemo(FriendSearchRequest request) {
         User currentUser = userFacade.getCurrentUser();
 
-        User user = userRepository.findByNickname(request.getNickname())
-                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+        User user = userFacade.findByNickName(request.getNickname());
 
         Friend friend = friendRepository.findFriendByUser(user)
                 .orElseThrow(() -> FriendNotFoundException.EXCEPTION);

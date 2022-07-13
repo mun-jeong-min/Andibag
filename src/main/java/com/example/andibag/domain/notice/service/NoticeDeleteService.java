@@ -23,8 +23,8 @@ public class NoticeDeleteService {
                 .orElseThrow(() -> NoticeNotFoundException.EXCEPTION);
 
 
-        noticeRepository.delete(notice);
-        commentRepository.deleteAllByNotice(notice);
         replyRepository.deleteAllByNotice(notice);
+        commentRepository.deleteAllByNotice(notice);
+        noticeRepository.delete(notice);
     }
 }

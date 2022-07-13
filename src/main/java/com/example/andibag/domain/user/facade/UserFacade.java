@@ -19,4 +19,9 @@ public class UserFacade {
         return userRepository.findByAccountId(accountId)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
     }
+
+    public User findByNickName(String nickName) {
+        return userRepository.findByNickname(nickName)
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+    }
 }
