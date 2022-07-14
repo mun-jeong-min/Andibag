@@ -39,3 +39,6 @@ cloud:
 logging:
   level:
     root: info
+
+socket:
+  port: 8081

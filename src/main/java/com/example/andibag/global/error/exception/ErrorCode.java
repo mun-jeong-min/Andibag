@@ -1,10 +1,12 @@
 package com.example.andibag.global.error.exception;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ErrorCode {
     UPLOAD_FILE_FAILED(400, "AUTH-400-1", "Upload File Failed"),
     SAVE_IMAGE_FAILED(400, "COMMON-400-1", "Save Image Failed"),
