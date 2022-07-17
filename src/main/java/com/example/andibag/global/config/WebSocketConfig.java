@@ -2,7 +2,7 @@ package com.example.andibag.global.config;
 
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOServer;
-import com.example.andibag.global.socket.WebSocketMappingSuppoter;
+import com.example.andibag.global.socket.WebSocketMappingSupporter;
 import com.example.andibag.global.socket.exception.SocketExceptionListener;
 import com.example.andibag.global.socket.security.WebSocketConnectController;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class WebSocketConfig {
-    private final WebSocketMappingSuppoter mappingSuppoter;
+    private final WebSocketMappingSupporter mappingSuppoter;
     private final WebSocketConnectController connectController;
     private final SocketExceptionListener exceptionListener;
 

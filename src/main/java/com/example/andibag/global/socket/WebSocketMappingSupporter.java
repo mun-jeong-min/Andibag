@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class WebSocketMappingSuppoter {
+public class WebSocketMappingSupporter {
     private final ConfigurableListableBeanFactory beanFactory;
     private SocketIOServer socketIOServer;
 
