@@ -25,7 +25,9 @@ public enum ErrorCode {
     COMMENT_NOT_FOUND(404, "comment-404-1", "Comment Not Found"),
     FRIEND_NOT_FOUND(404, "friend-404-1", "Friend Not Found"),
 
-    USER_EXISTS(409, "USER-409-1", "User Exists");
+    USER_EXISTS(409, "USER-409-1", "User Exists"),
+
+    SERVER_ERROR(500, "server-500-1", "server error");
 
     private final int status;
     private final String code;

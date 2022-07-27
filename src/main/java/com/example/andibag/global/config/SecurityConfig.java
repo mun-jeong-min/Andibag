@@ -79,7 +79,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .apply(new FilterConfig(jwtTokenProvider, objectMapper));
     }
-    // 이미지
     // 채팅
     // fcm
 }
