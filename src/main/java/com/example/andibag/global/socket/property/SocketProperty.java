@@ -1,4 +1,4 @@
-package com.example.andibag.global.socket;
+package com.example.andibag.global.socket.property;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

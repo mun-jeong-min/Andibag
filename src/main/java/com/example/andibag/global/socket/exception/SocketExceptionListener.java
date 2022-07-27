@@ -5,7 +5,7 @@ import com.corundumstudio.socketio.listener.ExceptionListener;
 import com.example.andibag.global.error.ErrorResponse;
 import com.example.andibag.global.error.exception.ErrorCode;
 import com.example.andibag.global.error.exception.ProjectException;
-import com.example.andibag.global.socket.SocketProperty;
+import com.example.andibag.global.socket.property.SocketProperty;
 import io.netty.channel.ChannelHandlerContext;
 import org.springframework.stereotype.Component;
 
