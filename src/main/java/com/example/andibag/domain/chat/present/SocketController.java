@@ -17,7 +17,7 @@ public class SocketController {
     private final ChatRoomService chatRoomService;
 
     @OnEvent(SocketProperty.ROOM_KEY)
-    public void event(SocketIOServer server, SocketIOClient client, @RequestBody @Valid Long friendId) {
-        chatRoomService.joinRoom(server, client, friendId);
+    public void event(SocketIOClient client, @RequestBody @Valid Long friendId) {
+        chatRoomService.joinRoom(client, friendId);
     }
 }

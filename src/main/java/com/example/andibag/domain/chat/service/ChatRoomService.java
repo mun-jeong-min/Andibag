@@ -23,7 +23,7 @@ public class ChatRoomService {
     private final RoomRepository roomRepository;
 
     @Transactional
-    public void joinRoom(SocketIOServer server, SocketIOClient client, Long friendId) {
+    public void joinRoom(SocketIOClient client, Long friendId) {
         User currentUser = userFacade.getCurrentUser();
 
         User user = userRepository.findById(friendId)
@@ -49,6 +49,7 @@ public class ChatRoomService {
                         .build()
         );
 
+        client.joinRoom(room.getId());
         client.joinRoom(room.getId());
         System.out.println("입장");
     }
