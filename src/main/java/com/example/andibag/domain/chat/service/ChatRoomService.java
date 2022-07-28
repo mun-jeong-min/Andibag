@@ -10,6 +10,7 @@ import com.example.andibag.domain.user.domain.User;
 import com.example.andibag.domain.user.domain.repository.UserRepository;
 import com.example.andibag.domain.user.exception.UserNotFoundException;
 import com.example.andibag.domain.user.facade.UserFacade;
+import com.example.andibag.global.socket.property.SocketProperty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,9 +49,9 @@ public class ChatRoomService {
                         .room(room)
                         .build()
         );
+        client.joinRoom(room.getId());
+        client.joinRoom(room.getId());
 
-        client.joinRoom(room.getId());
-        client.joinRoom(room.getId());
-        System.out.println("입장");
+        client.sendEvent(SocketProperty.ROOM_KEY, room.getId());
     }
 }
