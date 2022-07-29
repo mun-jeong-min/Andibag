@@ -1,11 +1,11 @@
 package com.example.andibag.domain.chat.service;
 
 import com.corundumstudio.socketio.SocketIOClient;
-import com.corundumstudio.socketio.SocketIOServer;
 import com.example.andibag.domain.chat.domain.Member;
 import com.example.andibag.domain.chat.domain.Room;
 import com.example.andibag.domain.chat.domain.repository.MemberRepository;
 import com.example.andibag.domain.chat.domain.repository.RoomRepository;
+import com.example.andibag.domain.chat.present.dto.request.JoinRoomRequest;
 import com.example.andibag.domain.user.domain.User;
 import com.example.andibag.domain.user.domain.repository.UserRepository;
 import com.example.andibag.domain.user.exception.UserNotFoundException;
@@ -13,7 +13,6 @@ import com.example.andibag.domain.user.facade.UserFacade;
 import com.example.andibag.global.socket.property.SocketProperty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -23,11 +22,10 @@ public class ChatRoomService {
     private final MemberRepository memberRepository;
     private final RoomRepository roomRepository;
 
-    @Transactional
-    public void joinRoom(SocketIOClient client, Long friendId) {
+    public void joinRoom(SocketIOClient client, JoinRoomRequest request) {
         User currentUser = userFacade.getCurrentUser();
 
-        User user = userRepository.findById(friendId)
+        User user = userRepository.findById(request.getFriendId())
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
         Room room = roomRepository.save(
@@ -50,8 +48,7 @@ public class ChatRoomService {
                         .build()
         );
         client.joinRoom(room.getId());
-        client.joinRoom(room.getId());
-
+        
         client.sendEvent(SocketProperty.ROOM_KEY, room.getId());
     }
 }
