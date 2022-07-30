@@ -6,9 +6,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-@Order(1)
-@Component
 @RequiredArgsConstructor
+@Component
+@Order(1)
 public class SocketRunner implements CommandLineRunner {
 
     private final SocketIOServer socketIOServer;
@@ -17,4 +17,5 @@ public class SocketRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         socketIOServer.start();
     }
+
 }

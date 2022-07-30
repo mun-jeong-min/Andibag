@@ -3,9 +3,8 @@ package com.example.andibag.global.socket.exception;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.listener.ExceptionListener;
 import com.example.andibag.global.error.ErrorResponse;
-import com.example.andibag.global.error.exception.ErrorCode;
 import com.example.andibag.global.error.exception.ProjectException;
-import com.example.andibag.global.socket.property.SocketProperty;
+import com.example.andibag.global.socket.SocketProperty;
 import io.netty.channel.ChannelHandlerContext;
 import org.springframework.stereotype.Component;
 
@@ -40,17 +39,29 @@ public class SocketExceptionListener implements ExceptionListener {
     }
 
     private void runExceptionHandling(Exception e, SocketIOClient client) {
-        final ErrorCode errorCode;
+        final ErrorResponse message;
 
-        if (e.getCause() instanceof ProjectException) {
-            errorCode = ((ProjectException) e.getCause()).getErrorCode();
+        if (e instanceof ProjectException) {
+            ProjectException projectException = (ProjectException) e;
+
+            message = ErrorResponse.builder()
+                    .message(projectException.getErrorCode().getMessage())
+                    .status(projectException.getErrorCode().getStatus())
+                    .build();
+        } else if (e.getCause() instanceof ProjectException) {
+            ProjectException projectException = (ProjectException) e.getCause();
+
+            message = ErrorResponse.builder()
+                    .message(projectException.getErrorCode().getMessage())
+                    .status(projectException.getErrorCode().getStatus())
+                    .build();
         } else {
-            errorCode = ErrorCode.SERVER_ERROR;
+            e.printStackTrace();
+            message = ErrorResponse.builder()
+                    .status(500)
+                    .message("Internal Server Error")
+                    .build();
         }
-        ErrorResponse message = ErrorResponse.builder()
-                        .status(errorCode.getStatus())
-                        .message(errorCode.getMessage())
-                        .build();
 
         client.sendEvent(SocketProperty.ERROR_KEY, message);
     }
