@@ -74,7 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE, "/memo/{id}").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/memo").authenticated()
 
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
 
                 .and()
                 .apply(new FilterConfig(jwtTokenProvider, objectMapper));
