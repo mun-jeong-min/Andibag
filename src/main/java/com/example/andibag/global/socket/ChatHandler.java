@@ -21,7 +21,7 @@ public class ChatHandler extends TextWebSocketHandler {
         String payload = message.getPayload();
         log.info("payload : " + payload);
 
-        for(WebSocketSession sess: list) {
+        for (WebSocketSession sess : list) {
             sess.sendMessage(message);
         }
     }

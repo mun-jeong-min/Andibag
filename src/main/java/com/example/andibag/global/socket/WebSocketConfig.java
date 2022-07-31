@@ -16,6 +16,8 @@ public class WebSocketConfig implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
 
-        registry.addHandler(chatHandler, "ws/chat").setAllowedOrigins("*");
+        registry.addHandler(chatHandler, "ws/chat")
+                .setAllowedOrigins("http://localhost:8080")
+                .withSockJS();
     }
 }
