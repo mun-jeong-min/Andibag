@@ -1,6 +1,7 @@
 package com.example.andibag.global.config;
 
 import com.corundumstudio.socketio.Configuration;
+import com.corundumstudio.socketio.SocketConfig;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.example.andibag.global.socket.WebSocketAddMappingSupporter;
 import com.example.andibag.global.socket.exception.SocketExceptionListener;
@@ -30,7 +31,9 @@ public class WebSocketConfig {
         SocketIOServer server = new SocketIOServer(config);
         mappingSupporter.addListeners(server);
         server.addConnectListener(connectController::onConnect);
-        return server;
+        SocketConfig socketConfig = new SocketConfig();
+        socketConfig.setReuseAddress(true);
+        config.setSocketConfig(socketConfig);
+        return new SocketIOServer(config);
     }
-
 }
