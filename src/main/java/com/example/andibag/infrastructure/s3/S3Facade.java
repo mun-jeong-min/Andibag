@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Locale;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -25,7 +26,7 @@ public class S3Facade implements ImageUtil {
         }
 
         String fileName = s3Properties.getBucket() + "/" + UUID.randomUUID() + file.getOriginalFilename();
-
+        
         try {
             PutObjectRequest putObjectRequest = new PutObjectRequest(
                     s3Properties.getBucket(),
