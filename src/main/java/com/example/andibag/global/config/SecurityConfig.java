@@ -34,7 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().disable()
 
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-
+                .and()
+                .headers().frameOptions().sameOrigin()
                 .and()
                 .authorizeRequests()
 
