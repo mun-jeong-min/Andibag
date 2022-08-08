@@ -7,8 +7,5 @@ import lombok.Getter;
 @Getter
 @Builder
 @AllArgsConstructor
-public class MessageDto {
-    private String roomId;
-    private String writer;
-    private String message;
+public class RoomRequestDto {
 }
