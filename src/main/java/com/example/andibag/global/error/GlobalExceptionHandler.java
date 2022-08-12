@@ -4,25 +4,21 @@ import com.example.andibag.global.error.exception.ErrorCode;
 import com.example.andibag.global.error.exception.ProjectException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindException;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-
     @ExceptionHandler(ProjectException.class)
     public ResponseEntity<ErrorResponse> handleException(ProjectException e) {
         ErrorCode errorCode = e.getErrorCode();
 
         return new ResponseEntity<>(
-                new ErrorResponse(errorCode.getStatus(), errorCode.getMessage()),
-                HttpStatus.valueOf(errorCode.getStatus())
+                ErrorResponse.builder()
+                        .status(errorCode.getStatus())
+                        .message(errorCode.getMessage())
+                        .build(), HttpStatus.valueOf(errorCode.getStatus())
         );
     }
 
