@@ -1,11 +1,9 @@
 package com.example.andibag.domain.chat.present;
 
+import com.example.andibag.domain.chat.present.dto.response.RoomResponse;
 import com.example.andibag.domain.chat.service.ChatRoomService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,5 +14,10 @@ public class ChatRoomController {
     @PostMapping("/room")
     public void createRoom(@RequestParam Long friendId) {
         chatRoomService.createRoom(friendId);
+    }
+
+    @GetMapping("/room")
+    public RoomResponse findAllRoom() {
+        return chatRoomService.findAllRoom();
     }
 }
