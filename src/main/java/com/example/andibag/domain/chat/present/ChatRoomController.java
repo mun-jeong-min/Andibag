@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 public class ChatRoomController {
     private final ChatRoomService chatRoomService;
 
-    @PostMapping("/room")
-    public void createRoom(@RequestParam Long friendId) {
+    @PostMapping("/room/{id}")
+    public void createRoom(@PathVariable("id") Long friendId) {
         chatRoomService.createRoom(friendId);
     }
 
