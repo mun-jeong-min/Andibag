@@ -33,9 +33,6 @@ public class Room {
     private User friend;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.REMOVE)
-    private final Set<Member> member = new HashSet<>();
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.REMOVE)
     private final Set<Message> messages = new HashSet<>();
 
     @Builder
