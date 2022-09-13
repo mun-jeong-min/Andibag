@@ -22,19 +22,21 @@ public class ChatRoomService {
     private final UserFacade userFacade;
     private final UserRepository userRepository;
 
-    public void createRoom(Long friendId) {
+    public Room createRoom(Long friendId) {
         User currentUser = userFacade.getCurrentUser();
         User user = userRepository.findById(friendId)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
         if(!roomRepository.findByHeadUserAndFriend(currentUser, user).isPresent()) {
-            roomRepository.save(
+            return roomRepository.save(
                     Room.builder()
                             .headUser(currentUser)
                             .friend(user)
                             .build()
+
             );
         }
+        return null;
     }
 
     public RoomResponse findAllRoom() {
