@@ -2,7 +2,6 @@ package com.example.andibag.domain.chat.service;
 
 import com.example.andibag.domain.chat.domain.Room;
 import com.example.andibag.domain.chat.domain.repository.RoomRepository;
-import com.example.andibag.domain.chat.exception.RoomNotFoundException;
 import com.example.andibag.domain.chat.present.dto.response.BasicRoomResponse;
 import com.example.andibag.domain.chat.present.dto.response.RoomResponse;
 import com.example.andibag.domain.user.domain.User;
@@ -27,13 +26,12 @@ public class ChatRoomService {
         User user = userRepository.findById(friendId)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
-        if(!roomRepository.findByHeadUserAndFriend(currentUser, user).isPresent()) {
+        if (!roomRepository.findByHeadUserAndFriend(currentUser, user).isPresent()) {
             return roomRepository.save(
                     Room.builder()
                             .headUser(currentUser)
                             .friend(user)
                             .build()
-
             );
         }
         return null;
