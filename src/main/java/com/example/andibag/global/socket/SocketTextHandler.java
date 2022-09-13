@@ -1,35 +1,35 @@
 package com.example.andibag.global.socket;
 
-import org.springframework.boot.configurationprocessor.json.JSONObject;
-import org.springframework.web.socket.CloseStatus;
+import com.example.andibag.domain.chat.domain.Message;
+import com.example.andibag.domain.chat.domain.repository.MessageRepository;
+import com.example.andibag.domain.chat.domain.repository.RoomRepository;
+import com.example.andibag.domain.user.facade.UserFacade;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-
+@RequiredArgsConstructor
+@Slf4j
+@Component
 public class SocketTextHandler extends TextWebSocketHandler {
-    private final Set<WebSocketSession> socketSessions = ConcurrentHashMap.newKeySet();
+
+    private final MessageRepository messageRepository;
+    private final RoomRepository roomRepository;
+    private final UserFacade userFacade;
 
     @Override
-    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        socketSessions.add(session);
-    }
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 
-    @Override
-    public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String payload = message.getPayload();
-
-        JSONObject jsonObject = new JSONObject(payload);
-        for(WebSocketSession s : socketSessions) {
-            s.sendMessage(new TextMessage("Hi " + jsonObject.getString("user") + "!"));
-        }
+        messageRepository.save(
+                Message.builder()
+                        .content(payload)
+                        .build()
+        );
+        TextMessage textMessage = new TextMessage(payload);
+        session.sendMessage(textMessage);
     }
-
-    @Override
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        socketSessions.remove(session);
-    }
-
 }
