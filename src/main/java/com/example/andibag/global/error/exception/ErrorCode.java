@@ -18,6 +18,7 @@ public enum ErrorCode {
     EXPIRED_JWT(401, "jwt-401-2", "Expired Jwt"),
 
     IMAGE_VALUE_NOT_FOUND(404, "COMMON-404-1", "Image Value Not Found"),
+    ROOM_NOT_FOUND(404, "room-404-1", "Room Not Found"),
     USER_NOT_FOUND(404, "USER-404-1", "User Not Found"),
     REFRESH_NOT_FOUND(404, "jwt-404-1", "RefreshToken Not Found"),
     NOTICE_NOT_FOUND(404, "notice-404-1", "Notice Not Found"),
