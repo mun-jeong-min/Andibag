@@ -25,19 +25,21 @@ public class ChatRoomService {
     public void createRoom(Long friendId) {
         User currentUser = userFacade.getCurrentUser();
         User user = userRepository.findById(friendId)
-                        .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
-        roomRepository.save(
-                Room.builder()
-                        .headUser(currentUser)
-                        .friend(user)
-                        .build()
-        );
+        if(!roomRepository.findByHeadUserAndFriend(currentUser, user).isPresent()) {
+            roomRepository.save(
+                    Room.builder()
+                            .headUser(currentUser)
+                            .friend(user)
+                            .build()
+            );
+        }
     }
 
     public RoomResponse findAllRoom() {
         User currentUser = userFacade.getCurrentUser();
-        
+
         List<BasicRoomResponse> basicRoomResponses = roomRepository.findRoomsByHeadUser(currentUser)
                 .stream()
                 .map(
@@ -49,16 +51,5 @@ public class ChatRoomService {
                 .collect(Collectors.toList());
 
         return new RoomResponse(basicRoomResponses);
-    }
-
-    public BasicRoomResponse findRoomById(Long id) {
-        Room room = roomRepository.findById(id)
-                .orElseThrow(() -> RoomNotFoundException.EXCEPTION);
-
-        return BasicRoomResponse.builder()
-                .id(room.getId())
-                .roomName(room.getFriend().getNickname())
-                .build();
-
     }
 }
