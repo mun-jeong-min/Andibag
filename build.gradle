@@ -52,9 +52,6 @@ dependencies {
     implementation 'org.webjars:sockjs-client:1.5.1'
     implementation 'org.webjars:stomp-websocket:2.3.4'
 
-    implementation("org.springframework.kafka:spring-kafka")
-    implementation("com.google.guava:guava:31.1-jre")
-
 }
 
 test {

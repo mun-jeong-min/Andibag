@@ -4,6 +4,7 @@ import com.example.andibag.domain.chat.domain.Room;
 import com.example.andibag.domain.chat.present.dto.response.RoomResponse;
 import com.example.andibag.domain.chat.service.ChatRoomService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,5 +22,4 @@ public class ChatRoomController {
     public RoomResponse findAllRoom() {
         return chatRoomService.findAllRoom();
     }
-
 }
