@@ -16,11 +16,11 @@ public class ChatMessageController {
     private final SimpMessageSendingOperations messageSendingOperations;
     private final MessageRepository messageRepository;
 
-    @MessageMapping("/chat/message")
-    @SendTo("/sub/chat/message")
+    @MessageMapping("/hello")
+    @SendTo("/topic/chat")
     public MessageDto message(MessageDto message) {
         String msg = message.getMessage();
-        messageSendingOperations.convertAndSend("/sub/chat/room/" + message.getRoomId(), msg);
+        messageSendingOperations.convertAndSend("/topic/chat/room/" + message.getRoomId(), msg);
 
         return new MessageDto(MessageType.SEND, message.getRoomId(), message.getWriter(), message.getMessage());
     }
