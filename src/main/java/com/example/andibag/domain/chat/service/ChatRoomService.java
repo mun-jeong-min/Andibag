@@ -2,7 +2,9 @@ package com.example.andibag.domain.chat.service;
 
 import com.example.andibag.domain.chat.domain.Room;
 import com.example.andibag.domain.chat.domain.repository.RoomRepository;
+import com.example.andibag.domain.chat.exception.RoomNotFoundException;
 import com.example.andibag.domain.chat.present.dto.response.BasicRoomResponse;
+import com.example.andibag.domain.chat.present.dto.response.EnterRoomResponse;
 import com.example.andibag.domain.chat.present.dto.response.RoomResponse;
 import com.example.andibag.domain.user.domain.User;
 import com.example.andibag.domain.user.domain.repository.UserRepository;
@@ -51,5 +53,15 @@ public class ChatRoomService {
                 .collect(Collectors.toList());
 
         return new RoomResponse(basicRoomResponses);
+    }
+
+    public EnterRoomResponse enterRoom(String roomId) {
+        Room room = roomRepository.findById(roomId)
+                .orElseThrow(() -> RoomNotFoundException.EXCEPTION);
+        
+        return EnterRoomResponse.builder()
+                .id(roomId)
+                .messages(room.getMessages())
+                .build();
     }
 }

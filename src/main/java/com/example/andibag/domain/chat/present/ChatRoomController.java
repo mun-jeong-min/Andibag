@@ -1,6 +1,7 @@
 package com.example.andibag.domain.chat.present;
 
 import com.example.andibag.domain.chat.domain.Room;
+import com.example.andibag.domain.chat.present.dto.response.EnterRoomResponse;
 import com.example.andibag.domain.chat.present.dto.response.RoomResponse;
 import com.example.andibag.domain.chat.service.ChatRoomService;
 import lombok.RequiredArgsConstructor;
@@ -20,5 +21,10 @@ public class ChatRoomController {
     @GetMapping("/room")
     public RoomResponse findAllRoom() {
         return chatRoomService.findAllRoom();
+    }
+
+    @GetMapping("/room/{id}")
+    public EnterRoomResponse enterRoom(@PathVariable("id") String roomId) {
+        return chatRoomService.enterRoom(roomId);
     }
 }
