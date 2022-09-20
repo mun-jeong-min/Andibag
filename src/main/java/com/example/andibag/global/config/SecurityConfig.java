@@ -73,14 +73,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE, "/memo/{id}").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/memo").authenticated()
 
-                .antMatchers(HttpMethod.POST, "/chat/room").authenticated()
-                .antMatchers(HttpMethod.GET, "/chat/room").authenticated()
+                .antMatchers(HttpMethod.POST, "/chat/room/{friendId}").authenticated()
 
                 .anyRequest().permitAll()
 
                 .and()
                 .apply(new FilterConfig(jwtTokenProvider, objectMapper));
     }
-    // 채팅
-    // fcm
 }

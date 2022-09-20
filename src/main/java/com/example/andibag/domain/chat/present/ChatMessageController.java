@@ -9,6 +9,7 @@ import com.example.andibag.domain.chat.exception.RoomNotFoundException;
 import com.example.andibag.domain.chat.present.dto.MessageDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,18 +20,18 @@ public class ChatMessageController {
     private final MessageRepository messageRepository;
     private final RoomRepository roomRepository;
 
-    @MessageMapping("/chat/message")
-    public void message(MessageDto messageDto) {
+    @MessageMapping("/chat.message")
+    public void message(@Payload MessageDto messageDto) {
         Room room = roomRepository.findById(messageDto.getRoomId())
-                        .orElseThrow(() -> RoomNotFoundException.EXCEPTION);
+                .orElseThrow(() -> RoomNotFoundException.EXCEPTION);
 
-        messageRepository.save(
+        Message message = messageRepository.save(
                 Message.builder()
                         .type(MessageType.JOIN)
                         .content(messageDto.getMessage())
                         .room(room)
                         .build()
         );
-        template.convertAndSend("/queue/chat/room/" + messageDto.getRoomId(), messageDto);
+        template.convertAndSend("/topic/" + message.getRoom().getId(), message.getContent());
     }
 }
