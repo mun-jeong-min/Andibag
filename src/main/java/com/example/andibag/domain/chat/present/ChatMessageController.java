@@ -21,7 +21,7 @@ public class ChatMessageController {
     private final RoomRepository roomRepository;
 
     @MessageMapping("/chat.message")
-    public void message(@Payload MessageDto messageDto) {
+    public MessageDto message(@Payload MessageDto messageDto) {
         Room room = roomRepository.findById(messageDto.getRoomId())
                 .orElseThrow(() -> RoomNotFoundException.EXCEPTION);
 
@@ -33,5 +33,10 @@ public class ChatMessageController {
                         .build()
         );
         template.convertAndSend("/topic/" + message.getRoom().getId(), message.getContent());
+
+        return MessageDto.builder()
+                .roomId(message.getRoom().getId())
+                .message(message.getContent())
+                .build();
     }
 }
