@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface RoomRepository extends CrudRepository<Room, Long> {
-    List<Room> findRoomsByHeadUser(User user);
+    List<Room> findAllByHeadUser(User user);
     Optional<Room> findById(String id);
     Optional<Room> findByHeadUserAndFriend(User user, User friend);
 }

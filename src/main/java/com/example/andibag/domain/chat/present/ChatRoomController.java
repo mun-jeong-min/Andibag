@@ -1,12 +1,10 @@
 package com.example.andibag.domain.chat.present;
 
 import com.example.andibag.domain.chat.present.dto.response.EnterRoomResponse;
+import com.example.andibag.domain.chat.present.dto.response.RoomResponse;
 import com.example.andibag.domain.chat.service.ChatRoomService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,4 +16,15 @@ public class ChatRoomController {
     public EnterRoomResponse createRoom(@PathVariable("friendId") Long friendId) {
         return chatRoomService.createRoom(friendId);
     }
+
+    @GetMapping("/room")
+    public RoomResponse getAllRooms() {
+        return chatRoomService.getAllRooms();
+    }
+
+    @GetMapping("/room/{id}")
+    public EnterRoomResponse enterRoom(@PathVariable("id") String roomId) {
+        return chatRoomService.EnterRoom(roomId);
+    }
+
 }
